@@ -80,20 +80,38 @@
 
                 <p>Visit this website to know more about these ideas. <a href="https://www.educba.com/supervised-learning-vs-unsupervised-learning/" target="_blank">Link</strong></a></p>
 
-                <h2>Example</h2>
+                <h3>Example - Genre classification of songs on Spotify</h3>
 
-                <p>This example is from a project I worked on in the introductry course about Machine Learning at Macalester: STAT 251 with Professor A. Johnson in 2019 Fall semester.
-                  In the example, I used a dataset of popular songs from Spotify to create an algorithm that predicts the genre of a song based on the song’s properties.
-                  Here is the link to the dataset: <a href="https://www.macalester.edu/~ajohns24/data/music_1_exam.csv">DOWNLOAD CSV files</a>.
-                </p>
+                <p>This example is from a project I worked on in the introductry course of Machine Learning at Macalester: STAT 251 with Professor A. Johnson in 2019 Fall semester.
+                  In the example, I used a dataset of songs from Spotify to create an algorithm that predicts the genre of a song based on the song’s properties.
+                  Here is the link to the dataset: <a href="https://www.macalester.edu/~ajohns24/data/music_1_exam.csv">DOWNLOAD CSV file</a></p>
+
                 <p>For each song, we have information about the artist and the song’s properties such as names, age, duration, etc.
                   I built an algorithm that automatically labels a song’s genre based on its properties and artist information.
                   Thus, this is an example of <strong>classification</strong>, a <strong>supervised learning</strong>.</p>
 
-                <p>However, the dataset contains 57 observations and 19 variables. Before creating the algorithm, we first need to reduce the number of features.
-                  This is an example of <strong>dimension reduction</strong>, an <strong>unsupervised learning</strong>. To do this, I used Principle Component Analysis (PCA), we can reduce the number of columns and remove the correlation between the features.
-                  In short, PCA is an unsupervised, non-parametric technique primarily used for dimensionality reduction. High dimensionality means that the dataset has a large number of features and PCA allows the model to be more efficient and accurate by reducing this number.
+                <p>However, the dataset contains 57 observations and 19 features. Before creating the algorithm, we first need to reduce the number of features.
+                  This is an example of <strong>dimension reduction</strong>, an <strong>unsupervised learning</strong>. To do this, I used Principle Component Analysis (PCA).
+                  In short, PCA reduces the number of features by removing the correlation between the features, allowing the model to be more efficient and accurate.</p>
+
+                <div class="item">
+                  <image width=600 src="img/portfolio/ML_pca.png"></image>
+                </div>
+                <br>
+
+                <p>The plot shows which variables had the most weights in constructing the first and second Principe Components (PCs).
+                  Energy, tempo, valence, acousticness were the significant portions of PC1. For PC2, the ages of the group members and daceability were significant.
+                  The plot tells us which variables are the key determinants of the song's genre. </p>
+
+                <p>After the transformation, I used the first 8 PCs to do classification, retaining about 80% of the information.
+                  Using the new data, I built a model using the KNN method to classify songs. KNN compare the songs and put the songs with similar  feature values ("neighbors") in the same genre.
+                  Some examples of other methods we can use are classification tree and forest.</p>
+
+                <p>The overall accuracy of this model was <strong>0.6604</strong>. Out of 53 songs without missing values in the dataset, 35 songs were classified accurately.
+                  The main limitation of the model is the prediction for ElectroClub songs. Only one of the 12 songs (8%) in this category was accurately classified.
+                  23 of the 26 songs (88%) in the Pop category and 11 of 15 songs (73%) in the RBHiphop category were correctly classified.
                 </p>
+
               </div>
             </div>
           </div>
