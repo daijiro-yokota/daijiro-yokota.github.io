@@ -1,0 +1,24 @@
+These are some features/posts I would like to add to my website in the future.
+
+<Posts, by priority>
+
+1. Improve Machine Learning post. I want to add all of four tasks: regression, classification, clustering, and Dim. reduction.
+
+2. Correlated data capstone presentation post. Talking about statistical approach to forecast.
+
+3. Bayesian? Maybe...
+
+
+
+<Features, by priority>
+1. I want the sidebar to move as I scroll down so that I can see what's on it always.
+
+2. I want to make categories so that people can see what they are interested in easily. ex. Business, Statistics, Economics, Technology, etc.
+
+3. Blog?
+
+4. Contact Form. This requires some research because Github Page only supports STATIC website.
+
+<Technical>
+
+1. I want the sidebar to be made on a separate file so that I don't have to make changes across every page when I have to change something on it. 
