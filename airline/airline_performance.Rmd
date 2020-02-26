@@ -1,0 +1,443 @@
+---
+title: "airline_performance"
+author: "Daijiro Yokota"
+date: "2/16/2020"
+output: 
+  html_document:
+    toc: true
+    toc_float: true
+---
+
+
+Research goal: Construct an algorithm that, based on pre-flight information, predicts whether a flight will be `late_or_cancelled` (vs relatively on time). In exercise 2 of the previous activity, you should have determined that this is a *supervised* **classification** task. In completing this task, notice that there's an imbalance in the `late_or_cancelled`.  Mainly, relatively few flights are very late/cancelled:
+
+```{r cache = TRUE}
+# Load the data
+library(tidyr)
+library(tidyverse)
+library(ggplot2)
+    
+# Info about 100,000 flights
+flights  <- read.csv("https://www.macalester.edu/~ajohns24/data/flights.csv") 
+
+# Info about airports
+airports <- read.csv("https://www.macalester.edu/~dshuman1/data/112/flights/airports.csv")
+
+names(flights)
+
+# Info about ~2,000 flights from MSP
+flight_data <- flights %>% 
+  filter("ORIGIN_AIRPORT" == "MSP") %>% 
+  replace_na(list(AIR_SYSTEM_DELAY = 0, AIRLINE_DELAY = 0, LATE_AIRCRAFT_DELAY = 0, WEATHER_DELAY = 0)) %>% 
+  left_join(., airports, by = c("DESTINATION_AIRPORT" = "IATA_CODE")) %>% 
+  mutate(MONTH = as.factor(MONTH), DAY_OF_WEEK = factor(DAY_OF_WEEK, labels = c("Mon","Tue","Wed","Thur","Fri","Sat","Sun"))) %>% 
+  select(-YEAR, -CANCELLATION_REASON, -FLIGHT_NUMBER, -TAIL_NUMBER, -ORIGIN_AIRPORT, -DESTINATION_AIRPORT, -AIRPORT, -CITY, -COUNTRY, -SECURITY_DELAY, -DIVERTED) %>% 
+  mutate(late_or_cancelled = case_when(
+ARRIVAL_DELAY <= 20 ~ "no",
+ARRIVAL_DELAY > 20 | CANCELLED == 1 ~ "yes")) %>% 
+  mutate(time_to_destination = ELAPSED_TIME + DEPARTURE_DELAY)
+
+
+names(flight_data) <- tolower(names(flight_data))
+    
+# Process the data
+class_data <- flight_data %>% 
+  select(late_or_cancelled, month, day_of_week, scheduled_departure, scheduled_time, distance, scheduled_arrival, latitude, longitude)
+
+# Check out the imbalance
+class_data %>% 
+  group_by(late_or_cancelled) %>% 
+  summarize(n())
+```
+
+In the exercises below, you'll review old tools while exploring new ways to deal with these imbalanced cases.
+
+
+\
+\
+
+
+(@) **Optional: parametric classification model**    
+a. What method do have at our disposal that could be used to fit a *parametric* classification model of `late_or_cancelled`?    
+    
+Logistic regression
+    
+b. Implement a parametric classification model of `late_or_cancelled` and interpret the model coefficients.    
+
+```{r}
+# Set the seed
+set.seed(253)
+    
+logistic_model_1 <- train(
+        as.factor(late_or_cancelled) ~ .,
+        data = class_data,
+        method = "glm",
+        family = "binomial",
+        trControl = trainControl(method = "cv", number = 10),
+        metric = "Accuracy",
+        na.action = na.omit
+)
+    
+summary(logistic_model_1)
+```
+
+    
+    
+c. Evaluate the quality of this model.    
+
+```{r}
+first_3 <- head(class_data, 3) 
+    
+predict(logistic_model_1, newdata = first_3, type = "prob")
+predict(logistic_model_1, newdata = first_3, type = "raw")
+```
+
+    
+```{r}
+# We can only make predictions for cases with information on the predictor
+predict_data <- na.omit(logistic_model_1$trainingData)
+    
+# CLASSIFY each case in the sydney data set (using a 0.5 probability threshold)
+
+classifications <- predict(logistic_model_1, newdata = predict_data, type = "raw")
+head(classifications, 3)
+    
+# Construct a confusion matrix
+confusionMatrix(data = classifications, 
+      reference = as.factor(predict_data$.outcome), 
+      positive = "yes")
+```
+    
+\
+\
+
+
+
+(@) **Nonparametric classification**    
+a. Name 3 nonparametric classification techniques that we've covered in 253. 
+    
+    
+    
+b. **Optional:** Describe the tradeoffs among these techniques.    
+    
+
+
+
+\
+\
+
+
+(@) **Classification trees**    
+    Construct a classification tree:        
+    ```{r eval = FALSE}    
+    # Construct the tree
+    set.seed(253)
+    tree_model <- train(
+      late_or_cancelled ~ .,
+      data = class_data,
+      method = "rpart",
+      parms = list(prior = c(0.5, 0.5)),
+      tuneGrid = data.frame(cp = seq(-0.01, 0.06, length = 50)),
+      trControl = trainControl(method = "cv", number = 10, selectionFunction = "oneSE"),
+      metric = "Accuracy",
+      na.action = na.omit
+    )
+    
+    # Tune the tree
+    plot(tree_model)
+    
+    # Plot the tree
+    library(rpart.plot)
+    rpart.plot(tree_model$finalModel)
+
+    # Evaluate the tree
+    tree_model$results %>% 
+      filter(cp == tree_model$bestTune$cp)
+    ```    
+    
+    a. Summarize the key takeaways.    
+    b. Interpret the CV accuracy.    
+    c. Note that we put equal `prior` weight on on time and late / cancelled flights.  What does this do?  What would happen if we got rid of this?  What are the trade-offs?
+    
+    
+    
+
+
+\
+\
+
+
+
+(@) **Random forest**    
+    Construct a bagging / random forest algorithm:    
+    ```{r eval = FALSE}    
+    # Construct the forest
+    set.seed(253)
+    forest_model <- train(
+      late_or_cancelled ~ .,
+      data = class_data,
+      method = "rf",
+      tuneGrid = data.frame(mtry = c(2, 3, 6)),
+      trControl = trainControl(method = "oob", selectionFunction = "best", sampling = "down"),
+      metric = "Accuracy",
+      na.action = na.omit
+    )
+    
+    # Tune the forest
+    plot(forest_model)
+    
+    # Evaluate the forest
+    forest_model$finalModel
+    
+    # ROCs for the tree and forest models
+    library(pROC)
+    tree_predictions <- predict(tree_model, newdata = class_data, type = "prob")$yes
+    forest_predictions <- predict(forest_model, newdata = class_data, type = "prob")$yes
+    par(mfrow = c(1,1))
+    roc(response = class_data$late_or_cancelled, pred = tree_predictions, 
+      plot = TRUE, legacy.axes = TRUE)
+    roc(response = class_data$late_or_cancelled, pred = forest_predictions, plot = TRUE, legacy.axes = TRUE, add = TRUE, col = 2)  #red
+    
+    ```    
+    
+    a. Note that instead of dealing with the imbalance in on-time vs late/cancelled flights by setting prior weights, we *down-sampled* (`sampling = "down"`).  What does this do?  HINT: Examine the forest confusion matrix.  
+    b. Report the OOB estimates of sensitivity, specificity, and overall accuracy.         
+    c. Interpret the ROC takeaway messages.  The black line corresponds to the `tree_model` and the red line corresponds to the `forest_model`.  NOTE: It would be more "honest" if we computed the ROCs using a set of data we set aside for testing.                
+    d. **Optional:**    
+        - Explain the difference between the OOB, CV, and in-sample approaches to measuring classification quality.    
+        - What predictors are most important in the construction of our forest?    
+        - What does it mean to *up-sample* (`sampling = "up"`)?  How would this impact our results?    
+        - What are the trade-offs of up-sampling and down-sampling (vs doing neither)?    
+        
+    
+
+
+\
+\
+
+
+(@) **Optional follow-up questions**    
+    a. Could you interpret and apply your tree to make new classifications?    
+    b. Could you construct a tree in a simple toy setting (like we did in class)?    
+    c. Could you use your tree to define / draw classification regions (like we did in class)?    
+    d. Could you explain the pros & cons of trees vs bagging / forests?    
+    e. Could you explain the basic tree, bagging, and forest algorithms?    
+    f. Could you interpret the measurements of area under the ROC curves and each point along the curves?    
+    
+    
+    
+    
+    
+\
+\
+\
+\
+\
+\
+\
+\
+
+
+
+
+
+
+## Research question 3    
+
+
+The `late_or_cancelled` categories lose some of the detailed information about how long you can expect your flight experience to be.  To this end, we can examine a flight's `time_to_destination` which *combines* the elapsed time spent in the plane with any potential departure delay (ie. roughly the time on the plane + extra time spent waiting in the airport).  Recall that our goal is to construct an algorithm that, based on pre-flight information, predicts a flight's `time_to_destination`.  As you should have determined in exercise 3 of the previous activity, this is a *supervised* **regression** task.  To begin, set up the data and check out some plots below.  
+
+```{r fig.width = 8, fig.height = 5.5, warning = FALSE}
+# Process data
+regression_data <- flight_data %>% 
+  filter(cancelled == 0) %>%
+  select(day_of_week, scheduled_departure, distance, scheduled_arrival, latitude, longitude, time_to_destination)
+
+# Check out time_to_destination vs some predictors
+library(gridExtra)
+g1 <- ggplot(regression_data, aes(y = time_to_destination, x = day_of_week)) + 
+  geom_boxplot()
+g2 <- ggplot(regression_data, aes(y = time_to_destination, x = scheduled_departure)) + 
+  geom_point() + 
+  geom_smooth(se = FALSE)
+g3 <- ggplot(regression_data, aes(y = time_to_destination, x = distance)) + 
+  geom_point() + 
+  geom_smooth(se = FALSE)
+g4 <- ggplot(regression_data, aes(y = time_to_destination, x = scheduled_arrival)) + 
+  geom_point() + 
+  geom_smooth(se = FALSE)
+g5 <- ggplot(regression_data, aes(y = time_to_destination, x = latitude)) + 
+  geom_point() + 
+  geom_smooth(se = FALSE)
+g6 <- ggplot(regression_data, aes(y = time_to_destination, x = longitude)) + 
+  geom_point() + 
+  geom_smooth(se = FALSE)
+grid.arrange(g1,g2,g3,g4,g5,g6,ncol=3)
+
+
+```
+
+
+\
+\
+
+
+(@) **Reducing the number of predictors**    
+    a. List all of the techniques you can think of that would help reduce the number of predictors in your model.    
+    b. **Optional:** What are the trade-offs of these algorithms?  Could you describe the basic steps of each algorithm?
+    
+    
+
+    
+    
+\
+\
+
+    
+
+(@) **LASSO**    
+    Construct a LASSO model of `time_to_destination` vs the 6 potential predictors:       
+    ```{r eval = FALSE}
+    # Run model
+    set.seed(253)
+    lasso_model <- train(
+      time_to_destination ~ .,
+      data = regression_data,
+      method = "glmnet",
+      tuneGrid = data.frame(alpha = 1, lambda = seq(0.00001, 1, length = 50)),
+      trControl = trainControl(method = "cv", number = 10, selectionFunction = "best"),
+      metric = "MAE",
+      na.action = na.omit
+    )
+        
+    plot(lasso_model)
+
+    # Check out the results
+    coef(lasso_model$finalModel, lasso_model$bestTune$lambda)
+    lasso_model$results %>% 
+      filter(lambda == lasso_model$bestTune$lambda)
+    ```
+    a. Summarize the key take-aways from the output.   
+    b. Evaluate the model:    
+        - How well does this model explain the variability in `time_to_destination`?    
+        - Interpret the CV error.    
+        - **Optional:** Check whether this model is wrong.    
+    d. **Optional:**  How could we change the `selectionFunction` and what impact would this have on the analysis?    
+    
+
+ 
+    
+    
+\
+\
+
+
+(@) **Nonparametric vs Parametric**    
+    Construct a nonparametric GAM model of `time_to_destination` vs the 6 potential predictors:    
+    
+    ```{r eval = FALSE}
+    set.seed(253)
+    gam_model <- train(
+      time_to_destination ~ .,
+      data = regression_data,
+      method = "gamLoess",
+      tuneGrid = data.frame(span = seq(0, 1, length = 10), degree = 1),
+      trControl = trainControl(method = "cv", number = 10, selectionFunction = "best"),
+      metric = "MAE",
+      na.action = na.omit
+    )
+    
+    # Tune the GAM
+    plot(gam_model)
+    
+    # Check out the results
+    par(mfrow = c(4,3))    
+    plot(gam_model$finalModel)
+    
+    # Evaluate the GAM
+    gam_model$results %>% 
+      filter(span == gam_model$bestTune$span)    
+    ```    
+        
+        
+    a. You had fit a parametric regression model in the previous exercise.  Were you feeling compelled to now fit a nonparametric model?    
+    b. Summarize some key take-aways of the GAM.    
+    c. Compare the quality of the GAM and LASSO models using rigorous measurements.    
+    d. Explain whether we'd prefer the LASSO or GAM in this case.    
+    e. Name all of the other nonparametric regression tools we've covered in 253.    
+    
+    
+    
+
+    
+    
+\
+\
+
+
+
+
+(@)  **Optional follow-up questions**    
+    We've discussed the KNN and LOESS (and GAM) as nonparametric regression alternatives.    
+    a. Could you describe the basic LOESS & KNN algorithms as well as how they differ?    
+    b. How does the bias-variance tradeoff play out in the KNN?  LOESS?    
+    c. Could you implement the KNN in a simple toy example as we did for the glucose data?    
+    
+
+
+\
+\
+
+
+
+(@) **Principal component analysis**    
+    With only 6 potential predictors, performing dimension reduction with PCA is a bit heavy-handed.  But we'll do it just for practice!  Interpret the key takeaways from the output below:    
+
+    ```{r eval = FALSE}
+    # Process the categorical predictors
+    pcr_data <- data.frame(model.matrix(~ . - 1, data = regression_data))
+    
+    # Keep just the predictors
+    pca_data <- pcr_data %>% 
+      select(-time_to_destination)
+    
+    # Compute PCA
+    pca_results <- prcomp(pca_data, scale = TRUE)
+    
+    # Scree plot
+    library(factoextra)
+    fviz_eig(pca_results)
+    
+    # Score plot
+    #fviz_pca_ind(pca_results, repel = TRUE)
+    
+    # Loadings plot
+    fviz_pca_var(pca_results, repel = TRUE)
+    ```    
+    
+    
+    
+ 
+
+
+\
+\
+
+
+
+
+(@) **Optional follow-up**    
+    a. Implement and analyze a principal component **regression** model.     
+    b. What does this algorithm do?  How does it differ from the LASSO?    
+    
+    
+\
+\
+
+
+
+
+(@) **Optional follow-up**    
+    Implement and analyze a regression forest for modeling `time_to_destination`.  How well does this compare to the other models?    
+    
+    
