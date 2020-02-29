@@ -73,20 +73,68 @@
               <div class="content-column-content">
                 <h1>Modeling and Forecasting of Correlated Time-Series Data</h1>
 
-                <p>Published on Feb 14, 2020</p>
+                <p>Published on Feb 29, 2020</p>
 
-                <p>This post introduces the capstone project in statistics I worked on with three other students (Jack, Carl, Karrin) at Macalester College for STAT 494: Correlate Data with Professor Brianna Heggeseth (2019, Fall)</p>
+                <p>This post describes a group project I worked for the class at Macalester College called <strong>Correlated Data</strong> in 2019 with <strong>Prof. B. Heggeseth</strong>. We learned different statistical techniques and we chose time-series analysis of coal consumption in the U.S. as our capstone project. In summary, we modeled the monthly coal consumption data since 1973 using ARIMA model and created a forecast for the next 2 years. This was a case study of the time-series analysis on real-world data. <p>
+                <p>I worked with three other Macalester students and my friends, <strong>Jack Freier '20</strong>, <strong>Karrin Khandelwal ‘20</strong>, and <strong>Carl Francalangia ‘20</strong>.</p>
 
-                <p>In statistics, <strong>Modeling</strong> is used  Statistical modeling is a simplified, mathematically-formalized way to approximate reality that generated the data we observe.
-                  It allows us to understand the reality and potentially predict the future.
-                  an application of Artificial Intelligence (AI) that provides machines the ability to automatically learn and improve from data without being explicitly programmed.
-                The main idea of Machine Learning is categorized into supervised learning and unsupervised learning.</p>
                 <blockquote class="blockquote">
-                  <p class="mb-0"><strong>Supervised learning</strong> is simply a process of learning algorithm from the training dataset. In this case, we would have input variables and an output variable and we use an algorithm to learn the function to map the output from the input. The goal of learning this function is that we can predict the output value when we have new input data.  Within supervised learning, we have <strong>regression</strong> and <strong>classification</strong>.</p>
+                  <p class="mb-0">In Statistics, <strong>modeling</strong> is the use of mathematical ideas to approximate the reality that generates the data we observe. Using the model we made, we create a <strong>forecast</strong>, which is a projection of what could happen in the future based on historical data. When we make a model, we often make an assumption that observations are independent. </p>
                   <br>
-                  <p class="mb-0"><strong>Unsupervised learning</strong> is modeling the underlying or hidden structure or distribution in the data in order to learn more about them. Therefore, we would only have input data and no corresponding output variables. Within unsupervised learning, we have <strong>clustering</strong> and <strong>dimension reduction</strong>. </p>
+                  <p class="mb-0">However, if you look at the real-world data, this assumption is not true in many cases. For example, if we take a survey in a classroom, the number we get from you is likely to be related to the data we get from the person sitting next to you. So we try to control for these relationships by using controlling variables such as age or gender. However, even after we try to capture these relationships, there still may be a relationship between you and the person next to you that can’t be explained. </p>
+                  <br>
+                  <p class="mb-0">When we are dealing with time-series data, instead of comparing you and your neighbor, we would be comparing the observations from today and yesterday, or this month and last month, etc. Whatever kind of data we are dealing with, when we make an assumption that these observations are dependent on each other,  our model changes significantly, and so does the forecast. </p>
                 </blockquote>
 
+                <h3>Case Study - Coal Consumption</h3>
+                <p>We got the data from EIA’s (the U.S. energy information administration) <a href="https://www.eia.gov" target="_blank">website</a>. The website has a dataset of domestic energy consumption, production, and other related data for each source of energy. We looked at the monthly coal consumption from January 1973 to May 2019. Our modeling method is called the <strong>ARIMA model</strong>, which stands for the autoregressive integrated moving average. In order to use the ARIMA model, we broke the original values into three components. </p>
+
+                <blockquote class="blockquote">
+                 <p class="mb-0">The first component is <strong>trend</strong>, which is a long-term average change over time. For example, is the value going up or down, or stagnant over time? We, then, subtract the estimated trend from the original value to deal with the seasonality. <strong>Seasonality</strong> is a pattern that repeats each time cycle. In this dataset, for example, January and August have higher values than other months because of potential factors such as the use of air conditioning. We take out the seasonality from the detrended values, and now left with residuals. <strong>Residual</strong> is the high-frequency variability in the observations not captured by trend or seasonality. This is where we look for the correlation between the values, and fit the ARIMA model.</p>
+               </blockquote>
+
+                <div class="item">
+                  <image width=600 src="img/correlated/splines.png"></image>
+                </div>
+                <br>
+
+                <p>The graph shows the original data of the domestic coal consumption between 1973 and 2019. We can see the overall increasing trend until 2006 and then dropping significantly. We also observe a clear seasonality, which is represented as the repeating patterns of ups and downs within each one-year cycle. The purple curve is our approximation of the trend. We used a method called splines, which is fitting multiple polynomial models for intervals with a similar trend. We split the x-axis into three intervals with two breaking points at 2006 and 2010 to capture the different trends.</p>
+
+                <div class="item">
+                  <image width=600 src="img/correlated/detrended.png"></image>
+                </div>
+                <br>
+                <div class="item">
+                  <image width=600 src="img/correlated/seasonality.png"></image>
+                </div>
+                <br>
+
+                <p>We now take out seasonality from the detrended values. We can see the seasonality by splitting this graph by one year cycle. Each line represents one year and we observe the repeating seasonal patterns. Summer and winter months have higher values than other months probably because of the use of air conditioning and heating, etc. We fit a linear model for each month with an interaction term after 2008 (because of the higher level of seasonality in the recent data) to estimate the seasonality.</p>
+
+                <div class="item">
+                  <image width=600 src="img/correlated/residual.png"></image>
+                </div>
+                <br>
+
+                <p>We removed the seasonality from the de-trended data and we are finally left with residuals. We can see that the values are scattered around zero and we see little pattern compared to the other plots. Technically, we still see the higher level of residuals for recent years that was not captured by the interaction term for seasonality but the plot looks good otherwise. In order to measure the correlation, we took pairs of two observations and calculated the average correlation between them by the distance, or the lag. So for example, we can look at two adjacent points (lag of 1) and see how correlated their values are. </p>
+
+                <div class="item">
+                  <image width=600 src="img/correlated/acf.png"></image>
+                </div>
+                <br>
+                <div class="item">
+                  <image width=600 src="img/correlated/pacf.png"></image>
+                </div>
+                <br>
+
+                <p>ACF (autocorrelation function) shows us the correlation between the pairs for each lag and PACF (partial ACF) conditions for all other lags, telling the direct correlation for each lag. We see a strong sign of the correlation between the two consecutive months but not for the other lags. We also see a weak correlation around 10 to 14 lags, which potentially indicates the existence of an annual correlation. </p>
+
+                <div class="item">
+                  <image width=600 src="img/correlated/forecast.png"></image>
+                </div>
+                <br>
+
+                <p>Based on the plot, we fit ARIMA model on residuals with AR(1) and seasonal MA(1) components. Since we now have all of the three components estimated, we can combine them to create a forecast. Our final forecast shows the same declining trend and seasonality, but the seasonal fluctuation looks smaller. The gray shades tells us the variability of the forecast value. Our guess is that the decreasing level of seasonality is due to giving equal weights to every observation in the 50 years of data, which underestimated the higher seasonal fluctuations in the recent years. This implies that the further work on seasonality/residual models may be necessary to make the forecast more accurate.</p>
 
               </div>
             </div>
