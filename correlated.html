@@ -94,43 +94,43 @@
                </blockquote>
 
                 <div class="item">
-                  <image width=600 src="img/correlated/splines.png"></image>
+                  <image class="responsive" src="img/correlated/splines.png"></image>
                 </div>
                 <br>
 
                 <p>The graph shows the original data of the domestic coal consumption between 1973 and 2019. We can see the overall increasing trend until 2006 and then dropping significantly. We also observe a clear seasonality, which is represented as the repeating patterns of ups and downs within each one-year cycle. The purple curve is our approximation of the trend. We used a method called splines, which is fitting multiple polynomial models for intervals with a similar trend. We split the x-axis into three intervals with two breaking points at 2006 and 2010 to capture the different trends.</p>
 
                 <div class="item">
-                  <image width=600 src="img/correlated/detrended.png"></image>
+                  <image class="responsive" src="img/correlated/detrended.png"></image>
                 </div>
                 <br>
                 <div class="item">
-                  <image width=600 src="img/correlated/seasonality.png"></image>
+                  <image class="responsive" src="img/correlated/seasonality.png"></image>
                 </div>
                 <br>
 
                 <p>We now take out seasonality from the detrended values. We can see the seasonality by splitting this graph by one year cycle. Each line represents one year and we observe the repeating seasonal patterns. Summer and winter months have higher values than other months probably because of the use of air conditioning and heating, etc. We fit a linear model for each month with an interaction term after 2008 (because of the higher level of seasonality in the recent data) to estimate the seasonality.</p>
 
                 <div class="item">
-                  <image width=600 src="img/correlated/residual.png"></image>
+                  <image class="responsive" src="img/correlated/residual.png"></image>
                 </div>
                 <br>
 
                 <p>We removed the seasonality from the de-trended data and we are finally left with residuals. We can see that the values are scattered around zero and we see little pattern compared to the other plots. Technically, we still see the higher level of residuals for recent years that was not captured by the interaction term for seasonality but the plot looks good otherwise. In order to measure the correlation, we took pairs of two observations and calculated the average correlation between them by the distance, or the lag. So for example, we can look at two adjacent points (lag of 1) and see how correlated their values are. </p>
 
                 <div class="item">
-                  <image width=600 src="img/correlated/acf.png"></image>
+                  <image class="responsive" src="img/correlated/acf.png"></image>
                 </div>
                 <br>
                 <div class="item">
-                  <image width=600 src="img/correlated/pacf.png"></image>
+                  <image class="responsive" src="img/correlated/pacf.png"></image>
                 </div>
                 <br>
 
                 <p>ACF (autocorrelation function) shows us the correlation between the pairs for each lag and PACF (partial ACF) conditions for all other lags, telling the direct correlation for each lag. We see a strong sign of the correlation between the two consecutive months but not for the other lags. We also see a weak correlation around 10 to 14 lags, which potentially indicates the existence of an annual correlation. </p>
 
                 <div class="item">
-                  <image width=600 src="img/correlated/forecast.png"></image>
+                  <image class="responsive" src="img/correlated/forecast.png"></image>
                 </div>
                 <br>
 
