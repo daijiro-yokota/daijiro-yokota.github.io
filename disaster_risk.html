@@ -99,21 +99,13 @@
                   <h5>Method</h5>
 
                   <p>
-                  Following  the  models  explained  in <strong>Timmer  et  al.  (2015)</strong>,  we  calculated  the  value  added contribution into each industry in Japan in 1995 from WIOT. This includes all the value added from every country involved in the production chain of the particular good in the industry.
-                  In the model, when N represents the number of countries and S denotes the number of industries in each country, value added g(s, n) created by an industry s in a country n to the last-stage production in a specific industry is calculated as follows. </p>
-
-                  <div class="item">
-                    <image class="responsive_small" src="img/io_table/method_1.png"></image>
-                  </div>
-                  <br>
+                  Following  the  models  explained  in <strong>Timmer  et  al.  (2015)</strong>,  we  calculated  the  foreign and domestic value  added contribution into 15 manufacturing industries in Japan in 1995 from WIOT.
+                  This includes all the value added from every country-industry involved in the production chain of the particular good in the industry.
+                  For the calculation of value-added on WIOT, please refer to my previous <a href="io_table.html" target="_blank">post</a>.
+                  We called the foreign value added share (FVAS) of the total value added to the industry <strong>GVC-dependence</strong>. This is our measure of the industry’s dependency on GVC.</p>
 
                   <p>
-                  In the equation, <strong>g</strong> is a SN-vector which represents the value added created in each of the SNcountry-industry involved in a value chain. <strong>Fe</strong> represents the summation vector of the final output of the good among all countries.
-                  Leontief inverse <strong>inv(I-A)</strong> is used so that the value-added contributions by all tiers of suppliers are taken into account. <strong>v-hat</strong> is a vector of value added over gross output ratio.
-                  Using WIOT from 1995 and 2010, we calculated g from each country to the 15 manufacturing industries in Japan.
-                  Then, we calculated the foreign value added share of the total value added to the industry, named <strong>GVC-dependence</strong>. This is our measure of the industry’s dependency on GVC and we assumed this value to be somewhat time invariant.</p>
-
-                  <p>Meanwhile, I broke down the foreign value added by countrie to measure the Japanese industry’s dependency on each country to match with the disaster data per country.
+                    Meanwhile, I broke down the foreign value added by country to measure the Japanese industry’s dependency on each country to match with the country-level disaster data.
                     Disaster  data  is  taken  from  the  <strong>EM_DAT  database</strong>  made  by <strong>Center  for  Research  on  the Epidemiology of Disasters (CRED)</strong> in Belgium.
                     The dataset contains essential data on the occurrence and effects of mass disasters in the world. Extracting six major natural disaster categories (earthquake, flood, hurricane, etc.) from the dataset, we calculated the risk for the 40 countries in the WIOT.
                     Then, we multiplied the country-dependence share with the country’s disaster risk to calculate GVC-riskmeasures for Japanese industries. Both country-dependence share and the disaster risk range from 0 to 1 so does DRM, as it is a multiple of the networks.
@@ -126,30 +118,32 @@
 
                   <p>In order to measure the impact of GVC risk to Japanese economy at industry level, we used the <strong>Indices of Industrial Production (IIP)</strong> reported by Ministry of Education, Trade, and Industry in Japan as dependent variables.
                     The Japanese dataset includes monthly indices on production, shipments, and inventory on 102 manufactured goods categories.
-                    We matched the industry categories between the this dataset and WIOT to measure the impact of GVC risk by industry.</p>
+                    We matched the industry categories between this dataset and WIOT to measure the impact of GVC risk by industry.</p>
 
                   <h5>Results</h5>
 
                   <div class="item">
                     <image class="responsive" src="img/io_table/result_1.png"></image>
-                    <h6><center>Figure 1</center></h6>
                   </div>
                   <br>
+
+                  <p>By  calculating  the  foreign  value  added contribution from WIOT in 1995 and 2010, we  captured  the  recent  trend  toward  more international value chain networks in the 15 Japanese manufacturing industries.
+                    As you  can see on the graph above, the GVC-dependency (FVAS) values increased significantly for all sectors between 1995 andd 2010.</p>
+
+                  <p><strong>Coke/Refined Petroleum and Mining</strong> are the industries that are most dependent on foreign value-added (GVC) among these 15 industries. This makes intuitive sense considering the company's limited natural resources in these fields.
+                    On the other hands, <strong>Pulp/Paper/Printing, Wood, Food, and Leather</strong> have lower GVC dependency andincrease than others and experienced smaller increases in the values. This also makes sense considering that these resources are relatively abundant in Japan.
+                    In general, these results go along with the main findings from Los et al. (2015).</p>
 
                   <div class="item">
                     <image class="responsive" src="img/io_table/result_2.png"></image>
-                    <h6><center>Figure 2</center></h6>
                   </div>
                   <br>
 
-                  <p>By  calculating  the  foreign  value  added contribution from WIOT in 1995 and 2010, we  captured  the  recent  trend  toward  more international value chain networks in the 14 Japanese manufacturing industries. (Figure 1) This result goes along with the main findings from Los et al. (2015).
-                    However, when we calculated the GVC-Riskwith  the  disaster  data,  the  number  almost proportionally decreased across the industries, which made it difficult to compare the risk between the industries. This was due to the lack of variability in the risk variable between the industries.
-                  </p>
+                  <p>However, when we calculated the GVC-Risk with  the  disaster  data,  the  values  almost proportionally decreased across the industries, which made it difficult to compare the risk between the industries.
+                    This was due to the lack of variability in the risk variable across industries. Another thing we noticed was that the production  indices  from METI  varied  significantly  across  the industries.
+                    When we tried to control for this variance  with  pre-trend  or  time  and  other fixed  effects,  the  model  lost  simplicity  and strength in the process.</p>
 
-                  <p>
-                    Another challenge was the very low values of these variables. Figure 2 shows that the GVC-Risk variables were below 0.04 for all industries. Furthermore,  the  production  indices  from METI  varied  significantly  across  the industries.
-                    When we tried to control for this variance  with  pre-trend  or  time  and  other fixed  effects,  the  model  lost  simplicity  and strength in the process.
-                    Although  we  observed  some  statistically significant   coefficients,   these   factors challenged  the  validity  of  our  regression results and our primary models did not show the  correlation  between  the GVC-Risk and industrial production indices.
+                  <p>Although  we  observed  some  statistically significant   coefficients,   these   factors challenged  the  validity  of  our  regression results and our primary models did not show the  correlation  between  the GVC-Risk and industrial production indices.
                   </p>
 
                   <h5>Conclusion</h5>
