@@ -70,15 +70,15 @@
               <h2>WIOT Case Study 1 </h2>
               <h3>Valunerability of Japanese Manufacturing Industries to Foreign Natural Disaster Risk</h3>
 
-              <p>Updated on Mar. 5, 2020</p>
+              <p>Updated on Mar. 29, 2020</p>
 
-              <p>This is a case study of using the World Input-Output Table created by the Euroepean Commisinos to capture the trade participation of each country by tracking the value-added at each stage of production.
+              <p>This is a case study of using the World Input-Output Table. Researchers at the Euroepean Commisinos created the table to capture the trade participation of each country by tracking the value-added at each stage of production.
               For more information about the WIOT, please visit my previous <a href="io_table.html" target="_blank">post</a>.</p>
 
               <h5>Summary</h5>
                   <blockquote class="blockquote">
-                    <p class="mb-0">We investigated if foreign natural disasters had any impacts on the Japanese manufacturing production and inventory data due to the expanding value-chain networks these industries are utilizing.
-                    I worked with <strong>Professor Felix Fiedt</strong> at Macaleste Department of Economics for this project over the summer of 2019.</p>
+                    <p class="mb-0">We investigated if foreign natural disasters had any impacts on the Japanese manufacturing production and inventory data due to the expanding international value-chain networks.
+                    I worked with <strong>Professor Felix Fiedt</strong> at Macaleste Department of Economics for this project over the summer of 2019. We used <strong>STATA</strong> for analyzing data and creating visualizations.</p>
                   </blockquote>
 
                   <h5>Introduction</h5>
@@ -86,12 +86,12 @@
                   <p>
                   Researchers found that the recent trend toward fragmentation of suppliers across the national borders in the global economy is potentially putting the firms to the hidden risks of the various supply shock in the more expansive areas.
                   <strong>Natural disaster</strong> is one of the most discussed examples of these shocks because of its unpredictable nature and the size of impacts on the local economy in the damaged area.
-                  In order to understand the hidden risk, we measured the impacts of foreign natural disasters to GVCs formed by the Japanese industries as the last stage of production.
-                  Specifically, we calculated the GVC-Dependency of the 15 manufacturing industries based on value added contribution made by the 40 foreign countries in WIOT.
+                  In order to understand the hidden risk, we measured the impacts of foreign natural disasters to <strong>Global Value Chains (GVCs)</strong> formed by Japanese industries as the last stage of production.
+                  Specifically, we calculated the dependency on GVCs of the 15 manufacturing industries based on value-added contribution made by the 40 foreign countries in the World IO-Table.
                   </p>
 
                   <p>
-                  We first compared the values for 1995 and 2010 to capture the trend in Japan. Then, we calculated the share of <strong>foreign value added (FVA)</strong> by each country and matched the numbers with the country’s disaster risk measured from the <strong>EM_DAT International Disaster Database</strong>.
+                  We first compared the value-added contribution made to these industries in 1995 and 2010 to capture the general trend. Then, we calculated the share of value-added made by each foreign country and matched the values with the country’s <strong>disaster risk</strong> measured from the <strong>EM_DAT International Disaster Database</strong>.
                   Multiplying these values, we created our key variable, <strong>GVC-Risk</strong> for each Japanese manufacturing industry.
                   In order to measure the economic impact of the  natural  disasters,  we  investigated  the  relationship  between  these  variables  and  the production data in the corresponding industries from 1995 to 2017.
                   </p>
@@ -99,16 +99,20 @@
                   <h5>Method</h5>
 
                   <p>
-                  Following  the  models  explained  in <strong>Timmer  et  al.  (2015)</strong>,  we  calculated  the  foreign and domestic value  added contribution into 15 manufacturing industries in Japan in 1995 from WIOT.
-                  This includes all the value added from every country-industry involved in the production chain of the particular good in the industry.
+                  Following  the  models  explained  by <strong>Timmer  et  al.  (2015)</strong>,  we  calculated  the  foreign and domestic value-added contributions made to the 15 industries in 1995.
+                  This includes all the value-added from every country-industry involved in the production chain of particular goods in the specified industry.
                   For the calculation of value-added on WIOT, please refer to my previous <a href="io_table.html" target="_blank">post</a>.
-                  We called the foreign value added share (FVAS) of the total value added to the industry <strong>GVC-dependence</strong>. This is our measure of the industry’s dependency on GVC.</p>
+                  We called the foreign value added share (FVAS) of the total value added to the industry <strong>GVC-dependency</strong>. This is our measure of the industry’s dependency on GVC.</p>
 
                   <p>
-                    Meanwhile, I broke down the foreign value added by country to measure the Japanese industry’s dependency on each country to match with the country-level disaster data.
+                    Meanwhile, I broke down the foreign value-added by country to measure the industry’s dependency on each country to match with the country-level disaster data.
                     Disaster  data  is  taken  from  the  <strong>EM_DAT  database</strong>  made  by <strong>Center  for  Research  on  the Epidemiology of Disasters (CRED)</strong> in Belgium.
                     The dataset contains essential data on the occurrence and effects of mass disasters in the world. Extracting six major natural disaster categories (earthquake, flood, hurricane, etc.) from the dataset, we calculated the risk for the 40 countries in the WIOT.
-                    Then, we multiplied the country-dependence share with the country’s disaster risk to calculate GVC-riskmeasures for Japanese industries. Both country-dependence share and the disaster risk range from 0 to 1 so does DRM, as it is a multiple of the networks.
+                    Then, we multiplied the country's value-added share with the country’s disaster risk to calculate the aggregate <em><strong>risk</strong></em> measures for each Japanese industry.</p>
+
+                  <p>In the equation, the value-added share (GVC-Depenency), within-foreign value-added share, and the country's disaster risk range from 0 to 1. Therefore, the aggregate risk for the industry also ranges from 0 to 1 and GVC-Risk, the multiple of the two terms, does as well.
+                    For example, suppose an industry imports 20% of the value-added from abroad, and 60% of that value-added comes from country 1 with the disaster risk 0.4 and the other 40% comes form the country 2 with the disaster risk 0.5.
+                    This industry's GVC-Risk would be 0.2 x (0.6 x 0.4 + 0.4 x 0.5) equals 0.2 x 0.44 = <strong>0.088</strong>.
                   </p>
 
                   <div class="item">
@@ -116,35 +120,100 @@
                   </div>
                   <br>
 
-                  <p>In order to measure the impact of GVC risk to Japanese economy at industry level, we used the <strong>Indices of Industrial Production (IIP)</strong> reported by Ministry of Education, Trade, and Industry in Japan as dependent variables.
-                    The Japanese dataset includes monthly indices on production, shipments, and inventory on 102 manufactured goods categories.
-                    We matched the industry categories between this dataset and WIOT to measure the impact of GVC risk by industry.</p>
+                  <p>Lastly, we measured the impacts of GVC risk to Japanese industries using <strong>Indices of Industrial Production (IIP)</strong> reported by Ministry of Education, Trade, and Industry in Japan (METI) as our dependent variables.
+                    The IIP dataset includes monthly indices of production, shipments, and inventory for 102 manufactured goods categories.
+                    We matched the industry categories between this dataset and the WIOT to measure the impact of GVC risk.</p>
 
-                  <h5>Results</h5>
+                  <h5>Summary Statistics and Results</h5>
+
+                  <h6>EM_DAT Summary Statistics</h6>
+
+                  <div class="item">
+                    <image class="responsive" src="img/io_table/dis_frequency.png"></image>
+                  </div>
+                  <br>
+                  <div class="item">
+                    <image class="responsive" src="img/io_table/maj_dis_frequency.png"></image>
+                  </div>
+                  <br>
+
+                  <p> The first graph shows the number of months in which the countries experienced a disaster and did not from 1995 to 2018.
+                    In general, large countries experienced more disasters recorded in the EM_DAT database, such as China, India, and USA. ROW stands for <strong>Rest of the World</strong> and this include every country included in the EM_DAT but <strong>not</strong> in the WIOT.
+                    Because it includes so many countries, every month had at least one disaster, making ROW an outlier in the graph.</p>
+
+                  <p>The second graph only counts the months if the country experienced at least one <strong>major</strong> diaster. Major disaster is defined as a disaster that had above 95 percentile in the damage, measured by the number of people affected, deaths, and economic datage.
+                  This significantly reduced the number of months with disasters for most countries. China, India, and USA remain to have the highest number of months with major disasters followed by Australia, Indonesia, Japan, Mexico, and Russia..</p>
+
+                  <div class="item">
+                    <image class="responsive" src="img/io_table/dis_density.png"></image>
+                  </div>
+                  <br>
+                  <div class="item">
+                    <image class="responsive" src="img/io_table/dis_density_no_storm.png"></image>
+                  </div>
+                  <br>
+
+                  <p>We controlled for the size of the countries based on the observations from the previous plots. Here, we devided the number of disaster within the time period (1995 - 2018) by the area of the country. These two graphs do not include ROW.
+                  The plot reports the number of <strong>disasters per square kilometers</strong> in each country by the six disaster types. Taiwan, Luxemburg, Belgium, and Netherlands are the countries with the highest number of disasters per unit size of the land areas. </p>
+
+                  <p>The second plot removed Storms from the first plot because it was acounting for the majority of the total numbers in some small countries, making the range of y-axis too large.
+                  Here, we observe more even distribution of diasters across the countries. Without Storm, Earthquake and Flood seem to be the most common diasters among the five types.
+                  Again, small countries such as <strong>Taiwan, Belgium, Greece, South Korea, and Solvakia</strong> seem to have many disasters for the same size of land area while large countries like USA and Australia have much less diasters per square kilometers.
+                  Although it is imperfect, this seems to be a reasonable starting point to measure the WIOT country's natural disaster risk. </p>
+
+                  <h6>IIP Summary Statistics</h6>
+
+                  <div class="item">
+                    <image class="responsive" src="img/io_table/Production.png"></image>
+                  </div>
+                  <br>
+                  <div class="item">
+                    <image class="responsive" src="img/io_table/Shipments.png"></image>
+                  </div>
+                  <br>
+                  <div class="item">
+                    <image class="responsive" src="img/io_table/Inventory.png"></image>
+                  </div>
+                  <br>
+                  <div class="item">
+                    <image class="responsive" src="img/io_table/InventoryRatio.png"></image>
+                  </div>
+                  <br>
+
+                  <p>The four plots above report the general trends of the yearly average IIP indices from 1995 to 2018, at 2015 as the base year. The first three plots share very similar trends across the industries, especially Production and Shipments almost exactly sharing the same trend.
+                    Some industries experienced a significant decrease in this time period, such as <strong>Machinery, Textiles, and Wood</strong>.
+                  We can see some shocks affecting the supplies across the industries, most noticeably the global recession around 2008 for first two plots. Inventory, on the other hand, seems to have fluctuated less in this time period.
+                  This is more recognizeable from the last plot, reporting the inveotory-to-production ratio. We observe that the indices spiked up in 2009, indicating the excessive inventory after the economic downturn.  </p>
+
+                  <h6>GVC Dependency</h6>
 
                   <div class="item">
                     <image class="responsive" src="img/io_table/result_1.png"></image>
                   </div>
                   <br>
 
-                  <p>By  calculating  the  foreign  value  added contribution from WIOT in 1995 and 2010, we  captured  the  recent  trend  toward  more international value chain networks in the 15 Japanese manufacturing industries.
-                    As you  can see on the graph above, the GVC-dependency (FVAS) values increased significantly for all sectors between 1995 andd 2010.</p>
+                  <p>The graph shows the GVC-Depedency of the 15 industries in 1995 and 2010. We  successfully captured  the  recent  trend  toward  more international value chain networks as you can see that the values increased significantly for all sectors.
+                  For most industries, the dependency values doubled and it seems that the industries with higher dependency in 1995 experienced more growth by 2010, with Wood being the only exception.</p>
 
                   <p><strong>Coke/Refined Petroleum and Mining</strong> are the industries that are most dependent on foreign value-added (GVC) among these 15 industries. This makes intuitive sense considering the company's limited natural resources in these fields.
                     On the other hands, <strong>Pulp/Paper/Printing, Wood, Food, and Leather</strong> have lower GVC dependency andincrease than others and experienced smaller increases in the values. This also makes sense considering that these resources are relatively abundant in Japan.
                     In general, these results go along with the main findings from Los et al. (2015).</p>
+
+                  <h6>GVC Risk</h6>
 
                   <div class="item">
                     <image class="responsive" src="img/io_table/result_2.png"></image>
                   </div>
                   <br>
 
-                  <p>However, when we calculated the GVC-Risk with  the  disaster  data,  the  values  almost proportionally decreased across the industries, which made it difficult to compare the risk between the industries.
-                    This was due to the lack of variability in the risk variable across industries. Another thing we noticed was that the production  indices  from METI  varied  significantly  across  the industries.
-                    When we tried to control for this variance  with  pre-trend  or  time  and  other fixed  effects,  the  model  lost  simplicity  and strength in the process.</p>
+                  <p>Using the GVC Dependency and country-level natural disaster risk, we calculated the GVC-Risk. The values almost proportionally decreased across the industries, indicating the low variability in the foreign disaster risk between the industries.
+                    This indicates that the industries are receiving value-added from a group of countries that is exposed to the natural diasters at a similar level, so <strong>the industries with higher dependency on foreign value-added face higher risk</strong>.
 
-                  <p>Although  we  observed  some  statistically significant   coefficients,   these   factors challenged  the  validity  of  our  regression results and our primary models did not show the  correlation  between  the GVC-Risk and industrial production indices.
-                  </p>
+                  <p>
+                    Using these variables, we ran regressions to measure the relationship between disaster risk and production indices.
+                    Before running regressions, however, we tried to control for the variance in IIP indices between the industries with pre-trend or time and other fixed effects.
+                    In short, although we observed some statistically significant coefficients, these factors challenged the validity of our regression results.
+                    </p>
 
                   <h5>Conclusion</h5>
 
@@ -153,7 +222,7 @@
                   </p>
 
                   <p>In spite of these achievements, due to the time limitation and the complex nature of natural disasters, our regression models need to be improved. Some of our major challenges were measuring  the  size  of  natural  disasters  and  dealing  with  dates,  especially  since  we  are discussing the lagged effects of natural disasters on foreign industries.
-                     Besides these downsides, however, the combination of WIOT and EM_DAT is a very powerful tool to measure the effects of a supply-shock through the complex international economy.
+                     Besides these downsides, however, we showed that the <strong>combination of WIOT and EM_DAT is a very powerful tool to measure the effects of a supply-shock through the complex international economy</strong>.
                   </p>
 
                   <h5>References</h5>
