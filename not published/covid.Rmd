@@ -1,0 +1,105 @@
+---
+title: "COVID-19 Data Visualizations"
+output: html_document
+---
+
+## Setup
+
+```{r warning=FALSE, message=FALSE}
+library(devtools)
+library(ggplot2)
+library(tidyr)
+library(readr)
+library(purrr)
+library(dplyr)
+library(stringr)
+library(forcats)
+library(rclipboard)
+library(shiny)
+```
+
+## Data
+
+The dataset is created by an Economist Joachim Gassen as a Github Package "tidycovid19" to facilitate the direct download of various Covid-19 related data from authoritative sources. The main source is Johns Hopkins University CSSE Github Repo. It also provides a flexible function and accompanying shiny app to visualize the spreading of the virus. 
+
+Blog Link: https://www.r-bloggers.com/meet-tidycovid19-yet-another-covid-19-related-r-package/ 
+
+Github Link: https://github.com/joachim-gassen/tidycovid19
+
+```{r message=FALSE}
+install_github("joachim-gassen/tidycovid19")
+
+library(tidycovid19)
+covid19_dta <- download_merged_data(silent = TRUE, cached = TRUE)
+```
+
+```{r}
+df <- covid19_dta %>%
+  select(country, iso3c, date, confirmed, deaths, recovered, region, income, population, land_area_skm, pop_density, pop_largest_city, life_expectancy, gdp_capita, lockdown, timestamp)
+```
+
+
+## Visualizations
+
+We can use the  function plot_covid19_spread to visualize the four values of interest; confirmed cases, deaths, recoveries, and active cases (confirmed - recovered). Particularly, I set the y-axis to be the number of cases per 100,000 people in these countries to compare the numbers across the countries.
+
+Documentation: https://rdrr.io/github/joachim-gassen/tidycovid19/man/plot_covid19_spread.html
+
+```{r}
+plot_covid19_spread(
+  type = "confirmed",
+  df, 
+  intervention = "lockdown",
+  highlight = c("ITA", "ESP", "FRA", "DEU", "USA","CHN","BRA","GBR", "BEL"),
+  edate_cutoff = 50,
+  per_capita = TRUE, 
+  per_capita_x_axis = TRUE,
+  population_cutoff = 10,
+  min_cases = 0.1
+)
+
+plot_covid19_spread(
+  type = "deaths",
+  df, 
+  intervention = "lockdown",
+  highlight = c("ITA", "ESP", "FRA", "DEU", "USA","CHN","BRA","GBR", "BEL"),
+  edate_cutoff = 50,
+  per_capita = TRUE, 
+  per_capita_x_axis = TRUE,
+  population_cutoff = 10,
+  min_cases = 0.1
+)
+
+plot_covid19_spread(
+  type = "recovered",
+  df, 
+  intervention = "lockdown",
+  highlight = c("ITA", "ESP", "FRA", "DEU", "USA","CHN","BRA","GBR", "BEL"),
+  edate_cutoff = 50,
+  per_capita = TRUE, 
+  per_capita_x_axis = TRUE,
+  population_cutoff = 10,
+  min_cases = 0.1
+)
+
+plot_covid19_spread(
+  type = "active",
+  df, 
+  intervention = "lockdown",
+  highlight = c("ITA", "ESP", "FRA", "DEU", "USA","CHN","BRA","GBR", "BEL"),
+  edate_cutoff = 50,
+  per_capita = TRUE, 
+  per_capita_x_axis = TRUE,
+  population_cutoff = 10,
+  min_cases = 0.1
+)
+```
+
+
+## Interactive Shiny App
+
+If you find these graphs helpful, Mr. Gassen actually created a shiny app so you can chage the setting and make your own plots. 
+
+Link: https://jgassen.shinyapps.io/tidycovid19/
+
+
