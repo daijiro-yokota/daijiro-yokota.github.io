@@ -35,9 +35,8 @@
         <div id="sidebar" class="col-md-4 col-lg-3 sidebar-offcanvas">
           <div class="sidebar-content">
             <h1 class="sidebar-heading"> <a href="index.html">Daijiro Yokota: Portfolio</a></h1>
-            <p class="sidebar-p">I am a college student studying Economics and Data Science at Macalester College in St. Paul, MN. </p>
-            <p class="sidebar-p">Originally from Tokyo, currently live in Minnesota. </p>
-            <ul class="sidebar-menu">
+            <p class="sidebar-p">I graduated from Macalester College in St. Paul, MN with double major in Economics and Statistics. My interest is to use analytical skills to help businesses grow, especially through Marketing, Product, Data, and Strategies. Originally from Tokyo, currently live in Minnesota. </p>
+              <ul class="sidebar-menu">
                 <!-- Link-->
                 <li class="sidebar-item"><a href="index.html" class="sidebar-link">Home</a></li>
                 <!-- Link-->
@@ -67,12 +66,12 @@
         <div class="col-md-8 col-lg-9 content-column white-background">
           <div class="small-navbar d-flex d-md-none">
             <button type="button" data-toggle="offcanvas" class="btn btn-outline-primary"> <i class="fa fa-align-left mr-2"></i>Menu</button>
-            <h1 class="small-navbar-heading"> <a href="index.html"> Machine Learning - Intorduction </a></h1>
+            <h1 class="small-navbar-heading"> <a href="index.html"> Customer Relations Management for Small Businesses </a></h1>
           </div>
           <div class="row">
             <div class="col-xl-10">
               <div class="content-column-content">
-                <h1>Concept of Machine Learning</h1>
+                <h1>Concept of CRM</h1>
                 <p><strong>Machine learning</strong> is an application of Artificial Intelligence (AI) that provides machines the ability to automatically learn and improve from data without being explicitly programmed.
                 The main idea of Machine Learning is categorized into supervised learning and unsupervised learning.</p>
                 <blockquote class="blockquote">
@@ -85,37 +84,11 @@
 
                 <h4>Example - Genre classification of songs on Spotify </h4>
 
-                <p>[Note] This example contains classification and dimension reduction. I will also upload examples of regression and clustering soon. </p>
-
-                <p>This example is from a project I worked on in the introductry course of Machine Learning at Macalester: STAT 251 with Professor A. Johnson in 2019 Fall semester.
-                  In the example, I used a dataset of songs from Spotify to create an algorithm that predicts the genre of a song based on the song’s properties.
-                  Here is the link to the dataset: <a href="https://www.macalester.edu/~ajohns24/data/music_1_exam.csv">DOWNLOAD CSV file</a></p>
-
-                <p>For each song, we have information about the artist and the song’s properties such as names, age, duration, etc.
-                  I built an algorithm that automatically labels a song’s genre based on its properties and artist information.
-                  Thus, this is an example of <strong>classification</strong>, a <strong>supervised learning</strong>.</p>
-
-                <p>However, the dataset contains 57 observations and 19 features. Before creating the algorithm, we first need to reduce the number of features.
-                  This is an example of <strong>dimension reduction</strong>, an <strong>unsupervised learning</strong>. To do this, I used Principle Component Analysis (PCA).
-                  In short, PCA reduces the number of features by removing the correlation between the features, allowing the model to be more efficient and accurate.</p>
-
                 <div class="item">
                   <image class="responsive" src="img/portfolio/ML_pca.png"></image>
                 </div>
                 <br>
 
-                <p>The plot shows which variables had the most weights in constructing the first and second Principe Components (PCs).
-                  Energy, tempo, valence, acousticness were the significant portions of PC1. For PC2, the ages of the group members and daceability were significant.
-                  The plot tells us which variables are the key determinants of the song's genre. </p>
-
-                <p>After the transformation, I used the first 8 PCs to do classification, retaining about 80% of the information.
-                  Using the new data, I built a model using the KNN method to classify songs. KNN compare the songs and put the songs with similar  feature values ("neighbors") in the same genre.
-                  Some examples of other methods we can use are classification tree and forest.</p>
-
-                <p>The overall accuracy of this model was <strong>0.6604</strong>. Out of 53 songs without missing values in the dataset, 35 songs were classified accurately.
-                  The main limitation of the model is the prediction for ElectroClub songs. Only one of the 12 songs (8%) in this category was accurately classified.
-                  23 of the 26 songs (88%) in the Pop category and 11 of 15 songs (73%) in the RBHiphop category were correctly classified.
-                </p>
 
               </div>
             </div>
