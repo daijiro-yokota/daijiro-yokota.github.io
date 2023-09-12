@@ -35,23 +35,25 @@
         <div id="sidebar" class="col-md-4 col-lg-3 sidebar-offcanvas">
           <div class="sidebar-content">
             <h1 class="sidebar-heading"> <a href="index.html">Daijiro Yokota: Portfolio</a></h1>
-            <p class="sidebar-p">I am a college student studying Economics and Data Science at Macalester College in St. Paul, MN. </p>
-            <p class="sidebar-p">Originally from Tokyo, currently live in Minnesota. </p>
-            <ul class="sidebar-menu">
+            <p class="sidebar-p">I work as a Marketing Analyst in New York City. I studied Economics and Statistics in Macalester College in Minnesota. My interest is to use data analysis to help businesses grow. Originally from Tokyo, Japan. </p>
+              <ul class="sidebar-menu">
                 <!-- Link-->
                 <li class="sidebar-item"><a href="index.html" class="sidebar-link">Home</a></li>
                 <!-- Link-->
-                <li class="sidebar-item"><a href="about.html" class="sidebar-link">About</a></li>
+                <li class="sidebar-item"><a href="portfolio.html" class="sidebar-link">Portfolio</a></li>
                 <!-- Link-->
-                <li class="sidebar-item"><a href="cv.html" class="sidebar-link">CV</a></li>
+                <li class="sidebar-item"><a href="resume.html" class="sidebar-link">Resume</a></li>
+                <!-- Link-->
+                <li class="sidebar-item"><a href="resource.html" class="sidebar-link">Resource</a></li>
             </ul>
             <p class="sidebar-p">Please feel free to reach out to me. </p>
             <p class="social">
               <a href="https://www.facebook.com/daijiro.yokota.5" data-animate-hover="pulse" class="external facebook"><i class="fa fa-facebook"></i></a>
-              <a href="https://www.linkedin.com/in/daijiro-yokota-ab5414129/" data-animate-hover="pulse" class="external linkedin"><i class="fa fa-linkedin"></i></a>
+              <a href="https://www.linkedin.com/in/daijiro-yokota" data-animate-hover="pulse" class="external linkedin"><i class="fa fa-linkedin"></i></a>
+              <a href="https://github.com/daijiro-yokota" data-animate-hover="pulse" class="external github"><i class="fa fa-github"></i></a>
               <a href="mailto:daijiroyokota81@gmail.com" data-animate-hover="pulse" class="email"><i class="fa fa-envelope"></i></a></p>
             <div class="copyright text-center text-md-left">
-              <p class="credit">&copy;2020 Daijiro Yokota | Template by <a href="http://bootstrapious.com/portfolio-themes" class="external">Bootstrapious.com</a></p>
+              <p class="credit">&copy;2023 Daijiro Yokota | Template by <a href="http://bootstrapious.com/portfolio-themes" class="external">Bootstrapious.com</a></p>
               <!-- Please do not remove the backlink to us, unless you support the development at http://bootstrapious.com/donate. It is part of the license conditions. Thanks for understanding :)        -->
             </div>
           </div>
@@ -70,6 +72,18 @@
                 <p class="lead"> Any questions about my projects?
                   Any comments on my website?
                   Please feel free to drop me a line! </p>
+
+
+
+                <form class="contact-form" action="mail2.php" method="post">
+                  <input type="text" name="name" placeholder="Full Name">
+                  <input type="text" name="email" placeholder="Your Email">
+                  <input type="text" name="subject" placeholder="Subject">
+                  <textarea name="message" placeholder="Message"></textarea>
+                  <button type="submit" name="submit">SEND MAIL</button>
+
+                  
+                </form>
 
                 <h4>You can find me on:</h4>
                 <p class="social social--big">
