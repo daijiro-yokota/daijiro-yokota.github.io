@@ -724,7 +724,7 @@ ABOUT
   transition: all 0.3s;
   overflow: hidden;
   text-overflow: ellipsis;
-  margin-bottom: 2rem;
+   margin-bottom: 15px; 
 }
 
 .box-masonry h4 {
