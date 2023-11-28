@@ -692,18 +692,22 @@ ABOUT
   height: 1rem;
   border-radius: 0;
 }
-grid-item
+
+
+
+.grid-item{
 /* breadcrumbs */
-.breadcrumb {
+/* .breadcrumb { */
   font-family: "Roboto", Helvetica, Arial, sans-serif;
-  text-transform: uppercase;
-  text-align: center;
+  /* text-transform: uppercase; */
+  /* text-align: center; */
   font-size: 0.875rem;
+  margin-bottom: 15px;
 }
 
-.masonry-item {
+/* .masonry-item {
   padding-bottom: 20px;
-}
+} */
 
 .tile-link {
   position: absolute;
@@ -727,12 +731,17 @@ grid-item
   /* margin-bottom: 20px;  */
 }
 
+/* .box-masonry p {
+  text-transform: ;
+} */
+
 .box-masonry h4 {
   font-size: 1rem;
   line-height: 1.5;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.1em;
+  text-align: center;
 }
 
 .box-masonry h4 a {
