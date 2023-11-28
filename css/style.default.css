@@ -702,7 +702,7 @@ grid-item
 }
 
 .masonry-item {
-  margin-bottom: 2rem;
+  margin-bottom: 20px;
 }
 
 .tile-link {
@@ -724,7 +724,7 @@ grid-item
   transition: all 0.3s;
   overflow: hidden;
   text-overflow: ellipsis;
-   /* margin-bottom: 15px;  */
+  margin-bottom: 20px; 
 }
 
 .box-masonry h4 {
