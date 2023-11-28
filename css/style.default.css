@@ -703,6 +703,7 @@ ABOUT
   /* text-align: center; */
   font-size: 0.875rem;
   margin-bottom: 15px;
+  position: relative;
 }
 
 /* .masonry-item {
