@@ -297,7 +297,8 @@ SIDEBAR + RIGHT COLUMN
 
 .grid {
   padding-top: 0.85rem;
-  overflow: hidden;
+  overflow-x: hidden;
+  overflow-y: visible;
 }
 
 .content-column-content p.lead {
