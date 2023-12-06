@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+</html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Daijiro Yokota: Portfolio</title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="all,follow">
+  <!-- Bootstrap CSS-->
+  <link rel="stylesheet" href="vendor/bootstrap/css/bootstrap.min.css">
+  <!-- Font Awesome CSS-->
+  <link rel="stylesheet" href="vendor/font-awesome/css/font-awesome.min.css">
+  <!-- Google fonts - Roboto-->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,300,700,400italic">
+  <!-- owl carousel-->
+  <link rel="stylesheet" href="vendor/owl.carousel/assets/owl.carousel.css">
+  <link rel="stylesheet" href="vendor/owl.carousel/assets/owl.theme.default.css">
+  <!-- theme stylesheet-->
+  <link rel="stylesheet" href="css/style.default.css" id="theme-stylesheet">
+  <!-- Custom stylesheet - for your changes-->
+  <link rel="stylesheet" href="css/custom.css">
+  <!-- Favicon-->
+  <link rel="shortcut icon" href="img/favicon.png">
+  <!-- Tweaks for older IEs--><!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
+</head>
+<body>
+  <div id="all">
+    <div class="container-fluid">
+      <div class="row row-offcanvas row-offcanvas-left">
+        <!--   *** SIDEBAR ***-->
+        <div id="sidebar" class="col-md-4 col-lg-3 sidebar-offcanvas">
+          <div class="sidebar-content">
+            <h1 class="sidebar-heading"> <a href="index.html">Daijiro Yokota: Portfolio</a></h1>
+            <p class="sidebar-p"> </p>
+              <ul class="sidebar-menu">
+                <!-- Link-->
+                <li class="sidebar-item"><a href="index.html" class="sidebar-link">Home</a></li>
+                <!-- Link-->
+                <li class="sidebar-item"><a href="blog.html" class="sidebar-link active">Blog</a></li>
+                <!-- Link-->
+                <!-- <li class="sidebar-item"><a href="resume.html" class="sidebar-link">Resume</a></li> -->
+                <!-- Link-->
+                <li class="sidebar-item"><a href="resource.html" class="sidebar-link">Resource</a></li>
+            </ul>
+            <p class="social">
+              <a href="https://www.facebook.com/daijiro.yokota.5" data-animate-hover="pulse" class="external facebook"><i class="fa fa-facebook"></i></a>
+              <a href="https://www.linkedin.com/in/daijiro-yokota" data-animate-hover="pulse" class="external linkedin"><i class="fa fa-linkedin"></i></a>
+              <a href="https://github.com/daijiro-yokota" data-animate-hover="pulse" class="external github"><i class="fa fa-github"></i></a>
+              <a href="mailto:daijiroyokota81@gmail.com" data-animate-hover="pulse" class="email"><i class="fa fa-envelope"></i></a></p>
+            <div class="copyright text-center text-md-left">
+              <p class="credit">&copy;2023 Daijiro Yokota | Template by <a href="http://bootstrapious.com/portfolio-themes" class="external">Bootstrapious.com</a></p>
+              <!-- Please do not remove the backlink to us, unless you support the development at http://bootstrapious.com/donate. It is part of the license conditions. Thanks for understanding :)        -->
+            </div>
+          </div>
+        </div>
+        <!--   *** SIDEBAR END ***  -->
+        <!--   *** DETAIL ***-->
+        <div class="col-md-8 col-lg-9 content-column white-background">
+          <div class="small-navbar d-flex d-md-none">
+            <button type="button" data-toggle="offcanvas" class="btn btn-outline-primary"> <i class="fa fa-align-left mr-2"></i>Menu</button>
+            <h1 class="small-navbar-heading"> <a href="index.html">Daijiro Yokota: Portfolio</a></h1>
+          </div>
+          <div class="row">
+            <div class="col-xl-10">
+              <div class="content-column-content">
+
+              <h2>Web Tracking</h2>
+              <h3>End of Pixel tracking and transition to Server-side tracking</h3>
+
+              <p>Updated on Dec. 5, 2023</p>
+              <h5>Summary</h5>
+              
+                 <p> As some of you may know, the end of the third-party cookies and pixel tracking era is approaching. 
+                  Google announced that its browser Chrome will disable third-party cookies starting next year (Q4 of 2024). 
+                To stay ahead in this change, let’s familiarize ourselves with what this transition means for advertisers and what you need to do to prepare.</p>
+
+                <p>Pixel tracking has been the gold standard for web advertisers to track and attribute marketing results. This method tracks user behaviors with a tracking pixel, an invisible HTML code snippet on a website. 
+                The transmission of the user’s IP address also makes it possible to match their information with other information on the Internet, such as social media accounts. These data are stored in the browser’s cookies (storage) and can be shared with websites for an improved user experience. 
+                Cookies are called third-party cookies when they are generated by websites different from the ones users are currently surfing, usually because they're linked to ads on that webpage. Third-party cookies allow advertisers and analytics companies to track users' browsing history on any sites that contain these ads.</p>
+               
+                <p>However, due to increasing privacy concerns and regulations like the EU’s GDPR, major browsers started blocking the storage of web users’ data in cookies and allowing users to turn off cookies. 
+                   On the user side, free tools like AdBlocker and browser settings allow users to disable third-party cookies, making pixel tracking less reliable.</p>
+                <p>In this new world of web tracking, server-to-server tracking with API replaces browser-side tracking pixels. Here, a unique identifier (click ID) is created for a user’s behavior such as a click or impression. 
+                  If that user later converts, the event ID is matched back to the individual via the server so you can see how your marketing campaigns performed. 
+                  Because of this process, server-side tracking has the following benefits compared to pixel tracking:</p>
+                  <ol>
+  <li>Accuracy: Tracking is done on the server side, and there is less randomness in results. Users can’t affect tracking by simply deleting their cookies or enabling ad-blockers on the browser.</li>
+ <li>Security: It is less exposed to fraud, and there are various options to prevent postback fraud.</li>
+ <li>Flexibility: There are more options for sending a signal about a successful event, instead of firing a conversion at a thank-you page with a pixel. This can be helpful, for example, when the client wants to register a conversion after shipping an order or a successful call, etc.</li>
+ <li>Transparency: It can be used to verify if there are any differences or distinctions in the number of conversions because tracking platforms get all the information about users’ sessions with every click.</li>
+</ol>
+<h5>Implementation of Sever-side Tracking</h5>
+<p>So how do we implement server-side tracking? You have some options depending on your need and available resources. Let’s look at some examples:</p>
+
+<h5>Google Tag Manager:</h5>
+<p>Google Tag Manager offers server-side tracking in Beta. When setting up a new container, there is an option to choose “Server” as the target platform. This enables server-side tracking within GTM. This option requires a Google Cloud account and billing information.</p>
+
+
+<h5>Publisher (Meta):</h5>
+<p>Publishers such as Meta offer multiple Conversion API setup options. Follow these guidelines to find the setup that works best for your needs and available resources. Meta’s setup options include:</p>
+<ol>
+<li>Commerce platform partner integration (Shopify, BigCommerce, etc)</li>
+<li>Conversion API Gateway integration (for AWS users)</li>
+<li>Other Partner integrations - Integration guide with GTM</li>
+<li></li>Direct integration with coding - Implementation guide</li>
+</ol>
+<h5>Other third-party Tools (Segment):</h5>
+
+  <p>Third-party tools like Segment also allow advertisers to set up server-side tracking. In Segment, click Catalog > Destinations from their web app. Search for “Facebook API (actions)” or other publisher API destinations. For specific guidelines on different channels, see documentation below:</p>
+<ol>
+    <li>Facebook API documentation - Segment</li>
+<li>TikTok API documentation - Segment</li>
+<li>Snapchat API documentation - Segment</li>
+  </ol>
+
+
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- JavaScript files-->
+  <script src="vendor/jquery/jquery.min.js"></script>
+  <script src="vendor/popper.js/umd/popper.min.js"> </script>
+  <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+  <script src="vendor/jquery.cookie/jquery.cookie.js"> </script>
+  <script src="vendor/owl.carousel/owl.carousel.min.js"></script>
+  <script src="vendor/masonry-layout/masonry.pkgd.min.js"></script>
+  <script src="js/front.js"></script>
+</body>
