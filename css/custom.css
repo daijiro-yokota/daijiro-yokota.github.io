@@ -27,6 +27,21 @@
   text-align: center;
 }
 
+
+.pagination {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+  margin: 10px 0;
+}
+
+.pagination a {
+  text-decoration: none;
+  color: #ef5285; 
+  font-weight: bold;
+}
+
+
 /*
 
 body {
