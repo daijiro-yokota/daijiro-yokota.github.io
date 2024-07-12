@@ -5,7 +5,7 @@ author: "Author: Daijiro Yokota (visit https://daijiro-yokota.github.io/ to lear
 site: bookdown::bookdown_site
 documentclass: book
 link-citations: yes
-github-repo: daijiro-yokota/LearnJapanese
+github-repo: daijiro-yokota/LearnJapanese/_book
 description: "This is a free digital textbook to learn Japanese!"
 output:
   bookdown::gitbook: default
