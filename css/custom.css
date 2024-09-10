@@ -42,6 +42,31 @@
 }
 
 
+
+@media (min-width: 768px) {
+  #sidebar {
+    flex: 0 0 25%;
+    max-width: 25%;
+  }
+  
+  .content-column {
+    flex: 0 0 75%;
+    max-width: 75%;
+  }
+}
+
+@media (min-width: 992px) {
+  #sidebar {
+    flex: 0 0 20%;
+    max-width: 20%;
+  }
+  
+  .content-column {
+    flex: 0 0 80%;
+    max-width: 80%;
+  }
+}
+
 /*
 
 body {
