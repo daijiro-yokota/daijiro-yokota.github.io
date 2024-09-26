@@ -9,7 +9,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 <li class="sidebar-item"><a href="index.html" class="sidebar-link">Home</a></li>
                 <li class="sidebar-item"><a href="portfolio.html" class="sidebar-link">Portfolio</a></li>
                 <li class="sidebar-item"><a href="case.html" class="sidebar-link">Case Study</a></li>
-                <li class="sidebar-item"><a href="sigma.html" class="sidebar-link">Sigma</a></li>
                 <li class="sidebar-item"><a href="blog.html" class="sidebar-link">Blog</a></li>
                 <li class="sidebar-item"><a href="resource.html" class="sidebar-link">Resource</a></li>
                 <li class="sidebar-item"><a href="contact.html" class="sidebar-link">Contact</a></li>
