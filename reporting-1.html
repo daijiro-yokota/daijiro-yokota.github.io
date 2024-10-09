@@ -66,17 +66,12 @@
                 <p>We use Python to write a script that combines rows from different sources every day. This script refreshes every day, combining data per campaign, per ad, and per advertiser. 
                   It aggregates KPIs like impressions, clicks, spend, and conversions, attributing them to each campaign. This way, you get a clear view of the performance metrics for each ad and campaign.</p>
                 
-                <h5>Data Sources</h5>
-                <p>Pull data from various publishers like Facebook Meta, Instagram, Google, and Snapchat using their APIs.</p>
-
-                <h5>Data Transformation</h5>
-                <p>Use Python to write a script that combines rows from different sources every day. This script refreshes daily, combining data by campaign, per ad, and per advertiser.</p>
-
-                <h5>Aggregation</h5>
-                <p>Aggregate key performance indicators (KPIs) such as impressions, clicks, ad spend, and conversions. Attribute these metrics to each campaign.</p>
-
-                <h5>Storage</h5>
-                <p>Store the transformed and aggregated data in a data warehouse for easy access and analysis.</p>
+                <ul>
+                  <li><b>Data Sources:</b> Pull data from various publishers like Facebook Meta, Instagram, Google, and Snapchat using their APIs.</li>
+                  <li><b>Data Transformation:</b> Use Python to write a script that combines rows from different sources every day. This script refreshes daily, combining data by campaign, per ad, and per advertiser.</li>
+                  <li><b>Aggregation:</b> Aggregate key performance indicators (KPIs) such as impressions, clicks, ad spend, and conversions. Attribute these metrics to each campaign.</li>
+                  <li><b>Storage:</b> Store the transformed and aggregated data in a data warehouse for easy access and analysis.</li>
+                </ul>
 
                 <p>Advertising platforms like TikTok, Google, and Meta have different column names for conversions, especially when custom conversions are set up. To manage this, you map and standardize these columns, transforming the data into a unified format. All this data is aggregated into a single, large table stored in your data warehouse, such as Snowflake, BigQuery, and DataBrick. The transformation and mapping ensure that conversions recorded by each platform align properly for your reports.</p>
 
