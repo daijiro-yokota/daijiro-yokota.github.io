@@ -3,7 +3,7 @@
 document.addEventListener('DOMContentLoaded', function() {
     const sidebarContent = `
         <div class="sidebar-content">
-            <h1 class="sidebar-heading"> <a href="index.html">Daijiro Yokota</a></h1>
+            <h1 class="sidebar-heading"> <a href="index.html">Marketing x Data</a></h1>
             <p class="sidebar-p"></p>
             <ul class="sidebar-menu">
                 <li class="sidebar-item"><a href="index.html" class="sidebar-link">Home</a></li>
