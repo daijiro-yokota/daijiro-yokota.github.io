@@ -67,29 +67,36 @@
                 <p>As a marketer, you're running online campaigns on Meta, Google, and other media/publishers. Your goal is to automate the reporting where you show numbers like spend, clicks, conversions, on a campaign or ad level, broken down by day, week, or maybe a month. 
                   Right now, you are downloading daily/weekly reports from Google, Facebook Ads, etc, copy & pasting it to a huge Google Sheet, and using VLOOKUP or SUMIF functions to put it in an aggregated table. Does it work? Yes. Is it a lot of work? Yes. Let’s automate this tedious process.</p>
               
-                <p>Essentially, you want to retrieve these reports using APIs from each publisher. Then, you transform the data by aggregating it by campaign and date. You store this transformed data in a data warehouse. 
+                <p>To start off, you want to retrieve these reports using APIs from each publisher instead of manual export/download. Then, you transform the data by aggregating the rows by campaign and date. You store this transformed data in a data warehouse. 
                   You, then, connect the warehouse into a BI or a spreadsheet, so you have a pretty looking table waiting for you when you wake up with yesterday’s data. Let’s see how we can do that.</p>
                 
-                <p>We use Python to write a script that combines rows from different sources every day. This script refreshes every day, combining data per campaign, per ad, and per advertiser. 
+                  <div class="item">
+                    <image class="responsive" src="img/portfolio/aggregation.pngng"></image>
+                  </div>
+
+
+                <p>We use Python to write a script that combines rows from different sources, like Google and Meta. This script refreshes every day, combining data per campaign, ad, and advertiser. 
                   It aggregates KPIs like impressions, clicks, spend, and conversions, attributing them to each campaign. This way, you get a clear view of the performance metrics for each ad and campaign.</p>
+
+                <p>Let's clarify some key concepts in this process;</p>
                 
                 <ul>
-                  <li><b>Data Sources:</b> Pull data from various publishers like Facebook Meta, Instagram, Google, and Snapchat using their APIs.</li>
-                  <li><b>Data Transformation:</b> Use Python to write a script that combines rows from different sources every day. This script refreshes daily, combining data by campaign, per ad, and per advertiser.</li>
-                  <li><b>Aggregation:</b> Aggregate key performance indicators (KPIs) such as impressions, clicks, ad spend, and conversions. Attribute these metrics to each campaign.</li>
-                  <li><b>Storage:</b> Store the transformed and aggregated data in a data warehouse for easy access and analysis.</li>
+                  <li><b>Data Sources:</b> Pull data from various publishers like Meta, Google, and Snapchat using their Reporging APIs.</li>
+                  <li><b>Data Transformation:</b> Use Python to write a script that combines rows from these sources. This script refreshes daily, combining data by campaign and ad.</li>
+                  <li><b>Aggregation:</b> Aggregate key metrocs, such as impressions, clicks, ad spend, and conversions. Attribute these metrics to each campaign.</li>
+                  <li><b>Storage:</b> Store the transformed and aggregated data in a data warehouse.</li>
                 </ul>
 
-                <p>Advertising platforms like TikTok, Google, and Meta have different column names for conversions, especially when custom conversions are set up. To manage this, you map and standardize these columns, transforming the data into a unified format. All this data is aggregated into a single, large table stored in your data warehouse, such as Snowflake, BigQuery, and DataBrick. The transformation and mapping ensure that conversions recorded by each platform align properly for your reports.</p>
+                <p>What's tricky here is that advertising platforms like TikTok, Google, and Meta have different column names for conversions, especially when custom conversions are set up. To manage this, you map and standardize these columns, transforming the data into a unified format. All this data is aggregated into a single, large table stored in your data warehouse, such as Snowflake, BigQuery, and DataBrick. The transformation and mapping ensure that conversions recorded by each platform align properly for your reports.</p>
 
                 <h5>Airflow Integration</h5>
-                <p>Airflow is a powerful workflow automation tool that can help orchestrate data pipelines like this to update your Snowflake table. Here's an overview of how Airflow works in this context:</p>
+                <p>So how do you make this Python scripts run every day? We use Airflow. <strong>Airflow</strong> is a powerful workflow automation tool that can help orchestrate data pipelines like this to update your Snowflake table. Here's a list of what Airflow can do in this context:</p>
 
                 <ul>
                   <li><b>Task Scheduling:</b> Airflow lets you schedule Python scripts to run at specific times or intervals. In your case, you're scheduling the transformation and data aggregation process daily to update the Snowflake table.</li>
                   <li><b>DAG (Directed Acyclic Graph):</b> Airflow uses DAGs to represent workflows. Each step in your pipeline (like retrieving data from APIs, mapping columns, or loading data into Snowflake) is defined as a task in the DAG. 
                     Airflow ensures these tasks are executed in the right order, handling dependencies between tasks.</li>
-                  <li><b>Python Operators:</b> Airflow provides operators like the PythonOperator that allow you to run your custom Python code for data transformations (like mapping columns from different platforms).
+                  <li><b>Python Operators:</b> Airflow provides operators like the PythonOperator that allow you to run your custom Python code for data transformations.
                      You could write a Python function to query and transform the data, then pass that function to the operator.</li>
                   <li><b>Snowflake Integration:</b> Using the SnowflakeOperator or custom scripts, Airflow can interact with Snowflake, executing SQL queries or loading data into the warehouse. 
                     You can also handle incremental updates, ensuring only new data is added daily.</li>
@@ -99,7 +106,7 @@
                 <p>In this setup, Airflow acts as the central manager, ensuring your Python scripts run on time and updating Snowflake consistently.</p>
 
                 <h5>Conclusion</h5>
-                <p>This is the overview of the first step of reporting automation. In the next article, we’ll cover how to connect a data warehouse to your BI tool to create a table you can use from the warehouse.</p>
+                <p>This is the overview of the first step of reporting automation. In the next article, we’ll cover how to connect a data warehouse to your BI tool so you can create a table and visulizations using the data from the warehouse.</p>
 
                 <div class="pagination">
                   <a href="case.html" title="Previous Page">← Previous Page</a>
