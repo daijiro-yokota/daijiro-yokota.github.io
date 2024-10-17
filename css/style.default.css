@@ -1178,8 +1178,8 @@ STYLE SWITCHER FOR DEMO
 
 .btn-primary:hover {
   color: #fff;
-  background-color: #ec2f6c;
-  border-color: #eb2364;
+  background-color: #379392;
+  border-color: #379392;
 }
 
 .btn-primary:focus, .btn-primary.focus {
@@ -1196,8 +1196,8 @@ STYLE SWITCHER FOR DEMO
 .btn-primary:not(:disabled):not(.disabled):active, .btn-primary:not(:disabled):not(.disabled).active,
 .show > .btn-primary.dropdown-toggle {
   color: #fff;
-  background-color: #eb2364;
-  border-color: #ea185c;
+  background-color: #379392;
+  border-color: #379392;
 }
 
 .btn-primary:not(:disabled):not(.disabled):active:focus, .btn-primary:not(:disabled):not(.disabled).active:focus,
@@ -1901,7 +1901,7 @@ mark,
 }
 
 a.text-primary:hover, a.text-primary:focus {
-  color: #eb2364 !important;
+  color: #379392 !important;
 }
 
 /*
@@ -1986,7 +1986,7 @@ a.text-primary:hover, a.text-primary:focus {
 a.bg-primary:hover, a.bg-primary:focus,
 button.bg-primary:hover,
 button.bg-primary:focus {
-  background-color: #eb2364 !important;
+  background-color: #379392 !important;
 }
 
 .bg-secondary {
@@ -2096,7 +2096,7 @@ button.bg-dark:focus {
 }
 
 a.text-primary:hover, a.text-primary:focus {
-  color: #eb2364 !important;
+  color: #379392 !important;
 }
 
 .text-secondary {
@@ -2163,7 +2163,7 @@ a.text-dark:hover, a.text-dark:focus {
 .badge-primary[href]:hover, .badge-primary[href]:focus {
   color: #fff;
   text-decoration: none;
-  background-color: #eb2364;
+  background-color: #379392;
 }
 
 .badge-secondary {
