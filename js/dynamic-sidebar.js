@@ -11,6 +11,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 <li class="sidebar-item"><a href="blog.html" class="sidebar-link">Blog</a></li>
                  <li class="sidebar-item"><a href="about.html" class="sidebar-link">About</a></li>
                 <li class="sidebar-item"><a href="resource.html" class="sidebar-link">Resource</a></li>
+                <li class="sidebar-item"><a href="resource-ai.html" class="sidebar-link">AI Resource</a></li>
                 <li class="sidebar-item"><a href="contact.html" class="sidebar-link">Contact</a></li>
             </ul>
             <p class="social">
