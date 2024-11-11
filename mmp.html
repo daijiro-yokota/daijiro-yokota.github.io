@@ -51,7 +51,7 @@
                
           
                 <div class="item">
-                  <img class="responsive" src="img/portfolio/mmp.png" alt="MMP Illustration">
+                  <img class="responsive" src="img/portfolio/people.jpg" alt="MMP people">
                 </div>
                 <br>
                 <br>
@@ -65,36 +65,30 @@
                 </blockquote>
                 
                 <h2>What is an MMP?</h2>
-                <p>A Mobile Measurement Partner (MMP) is a third-party platform that tracks user interactions with an app, particularly focusing on where users come from. 
+                <p>A <b>Mobile Measurement Partner (MMP)</b> is a third-party platform that tracks user interactions with an app, particularly focusing on where users come from. 
                   It identifies the media source (such as ads on Instagram, TikTok, Snapchat, or Google) that motivated the user to install or engage with the app, attributing each action to the corresponding source. 
                   This data is essential for marketers who want to understand which campaigns work and make data-driven decisions for user acquisition and re-engagement.</p>
 
-                <h2>How Attribution Works</h2>
-                <p>Attribution is the process of determining what motivated a user’s actions—whether it's installing an app, re-engaging, or completing a purchase. 
-                  MMP uses a sophisticated attribution model to identify and assign credit to touchpoints (such as clicks or impressions) in a user’s journey.</p>
+                <p><b>Attribution</b> is the process of determining what motivated a user’s actions—whether it's installing an app, re-engaging, or completing a purchase. 
+                  MMP uses a sophisticated attribution model to identify and assign credit to touchpoints (such as clicks or impressions) in a user’s journey. Understanding these distinctions helps advertisers optimize their campaigns and focus on the most effective channels.</p>
 
-                <h3>Types of Attribution</h3>
                 <ul>
                   <li><strong>Non-organic Attribution:</strong> This applies when a user interacts with a media source before installing the app. Here, attribution is assigned to the platform or ad that led to the action.</li>
                   <li><strong>Organic Attribution:</strong> For users who install the app without any ad interaction, they’re labeled as “organic.” 
                     Although MMPs don’t technically attribute organic installs, this distinction helps advertisers understand the portion of users acquired without paid efforts.</li>
                 </ul>
-                <p>Understanding these distinctions helps advertisers optimize their campaigns and focus on the most effective channels.</p>
 
-                <h2>Attribution Models: The Rules of the Game</h2>
+                <h5>Attribution Models</h5>
                 <p>An attribution model is a set of rules that defines how credit for an event (such as an install or purchase) is assigned to different touchpoints in the user's journey. 
-                  Different players in the app marketing ecosystem (e.g., Google Play, Apple, ad networks) may have unique models, and understanding these is key to accurate campaign analysis.</p>
+                  Different players in the app marketing ecosystem (e.g., Google Play, Apple, ad networks) may have unique models, and understanding these is key to accurate campaign analysis.
+                  AppsFlyer’s model, for example, prioritizes certain types of engagements, using an "attribution waterfall." Here’s how it works:</p>
+                
+                <ul>
+                  <li><strong>Clicks vs. Impressions: </strong>If a user engages with more than one ad before installing, AppsFlyer gives priority to clicks over impressions. </li>
+                  <li><strong>Deterministic vs. Probabilistic Methods: </strong> Deterministic attribution methods (e.g., device ID matching) are more reliable and thus prioritized over probabilistic ones (e.g., probabilistic modeling).</li>
+                </ul>
 
-                <h3>AppsFlyer's Attribution Waterfall</h3>
-                <p>AppsFlyer’s model, for example, prioritizes certain types of engagements, using an "attribution waterfall." Here’s how it works:</p>
-
-                <h4>Clicks vs. Impressions</h4>
-                <p>If a user engages with more than one ad before installing, AppsFlyer gives priority to clicks over impressions.</p>
-
-                <h4>Deterministic vs. Probabilistic Methods</h4>
-                <p>Deterministic attribution methods (e.g., device ID matching) are more reliable and thus prioritized over probabilistic ones (e.g., probabilistic modeling).</p>
-
-                <h2>Key Attribution Methods</h2>
+                <h5>Key Attribution Methods</h5>
                 <p>AppsFlyer uses several attribution methods, each tailored to different platforms and scenarios:</p>
                 <ul>
                   <li><strong>Referrer:</strong> This method uses a deterministic approach, assigning installs based on app store referral data.</li>
@@ -103,9 +97,6 @@
                   <li><strong>SKAdNetwork:</strong> Apple’s SKAdNetwork is a deterministic model specifically for iOS users, compliant with Apple’s privacy policies.</li>
                   <li><strong>Aggregated Advanced Privacy (AAP):</strong> An aggregate model used for privacy-compliant attribution without individual user data.</li>
                 </ul>
-
-                <!-- Include image -->
-
                 <p>The graphic below provides a visual overview of the user journey through different stages, from ad exposure to subscription. 
                   Each interaction point is tracked and attributed, providing marketers with a clear picture of where users come from and which campaigns are driving results.</p>
 
@@ -113,14 +104,12 @@
                 <div class="item">
                   <img class="responsive" src="img/portfolio/mmp.png" alt="User Journey Overview">
                 </div>
-               
+               <br>
 
                 <h2>Attribution Reporting</h2>
                 <p>Once attribution data is gathered, it is available for reporting through APIs and CSV exports, or within the MMP dashboard. 
                   This data is crucial for marketers to analyze and refine their campaigns, ensuring budget allocation is directed toward high-performing sources. 
                   AppsFlyer’s reports give insights into each touchpoint, providing transparency into the entire user journey.</p>
-
-                <h2>Why MMPs Matter for App Marketers</h2>
                 <p>Attribution helps app marketers understand what drives users to install, engage, or subscribe. 
                   By accurately tracking the effectiveness of each channel, MMPs allow marketers to:</p>
                 <ul>
@@ -130,9 +119,10 @@
                 </ul>
 
                 <p>In summary, MMP plays a critical role in app marketing, offering insights that help marketers drive growth and optimize user acquisition strategies. 
-                  Understanding how these platforms work, the attribution models they use, and how to interpret their data is essential for any app marketer aiming for data-driven decision-making.</p>
+                  Understanding how these platforms work, the attribution models they use, and how to interpret their data is essential for any app marketer aiming for data-driven decision-making.For more details on AppsFlyer's attribution model, you can visit their <a href="https://support.appsflyer.com/hc/en-us">official support page</a>.</p>
 
-                <p>For more details on AppsFlyer's attribution model, you can visit their <a href="https://support.appsflyer.com/hc/en-us">official support page</a>.</p>
+                <h2>Reference</h2>
+                <p><a href="https://support.appsflyer.com/hc/en-us">AppsFlyer Help Center: AppsFlyer attribution model</a>.</p>
 
                 <div class="pagination">
                   <a href="index.html" title="Previous Page">← Back to Home</a>
