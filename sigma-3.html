@@ -74,34 +74,41 @@
                 
                 <p>Our challenge was clear: optimize our Sigma dashboards for speed without sacrificing the granular insights that drive decision-making. After analyzing multiple dashboards, we identified two key improvements that can be easily applied.</p>
                 
-                <p><b>I. Removing Unnecessary Columns from Visualizations</b></p>
+                <p><b>Solution I. Removing Unnecessary Columns from Visualizations</b></p>
 
                 <p>When constructing visualizations, it’s common to pull in columns from the base table for calculations or transformations that eventually feed into pivot tables, KPI cards, or charts.
-                  However, after these calculations are done at the base table level, many of these “reference” or “intermediate” columns remain in the child visualization — even when they’re no longer needed. The key here is that in Sigma, each visualization is a table - like what you see in excel or google sheet. So if you are constructing a graph that shows "sales" KPI, for example, you don't really need to have columns related to "costs". 
-                  However, you may wonder that you'd need cost columns if you are trying to have a line chart that shows profit (sales - cost) -- no you don't. You just need to have the calculated field in the base table, and only use the profit column for your child element.  </p>  
+                  However, after these calculations are done at the base table level, many of these “reference” or “intermediate” columns remain in the child visualization — even when they’re no longer needed. </p>
+                
+                  <p>The key here is that in Sigma, <b>each visualization is a table</b> - like what you see in excel or google sheet. So if you are constructing a graph that shows "sales" KPI, for example, you don't really need to have columns related to "costs". 
+                 You may wonder that you'd need cost columns if you are trying to have a line chart that shows profit (sales - cost) -- no you don't. You just need to have the calculated field in the base table, and only use the profit column for your child element.  </p>  
                 <ul>
-                  <li><b>Step 1: Identify Non-Essential Columns:</b> Start by reviewing each visualization and its underlying elements. Determine which columns are directly shown in the visualization and which ones are only used behind the scenes. If a column doesn’t appear in the final display and isn’t used for filtering or drill-down, it’s a prime candidate for removal.</li>
+                  <li><b>Step 1 - Identify Non-Essential Columns:</b> Start by reviewing each visualization and its underlying tables. Determine which columns are directly shown and used in the visualization and which ones are just pulled from the parent table. 
+                    If a column doesn’t appear in the final display, used for filtering or drill-down, or included in calculated field logic, it can be removed = delete columns.</li>
                   <br>
-                  <li><b>Step 2: Focus on Core Metrics:</b> Let’s say you have a KPI card that shows click metrics. If that card only needs “Click” columns and certain breakdown fields, remove any conversions or other metrics not directly related. Similarly, pivot tables often need just the final computed columns. If the base table already performs the necessary calculations, the pivot doesn’t need all those intermediate columns anymore.</li>
+                  <li><b>Step 2 - Focus on Core Metrics:</b> Let’s say you have a KPI card that shows "click" metrics. Essentially, that card only needs “Click” columns and certain breakdown fields, so you can remove any conversions or other metrics not directly related, like purchase or cost metrics. 
+                    Similarly, pivot tables often need just the final computed columns. If the base table already performs the necessary calculations, the final pivot table doesn’t need all those intermediate columns anymore.</li>
                   <br>
-                  <li><b>Step 3: Streamline Every Visualization:</b> Apply this logic across the board—KPI cards, pivot tables, bar charts, and more. Each streamlined element reduces the query complexity and improves the overall dashboard load time.</li>
+                  <li><b>Step 3 - Streamline Every Visualization:</b> Apply this logic across the board—KPI cards, pivot tables, bar charts, and every child element on the dashboard. This reduces the query complexity drastically and improves the overall dashboard load time to a few seconds. </li>
                 </ul>
-                <p><b>Result:</b> With this step alone, we saw dashboards that originally took more than five seconds to load drop to a more reasonable three to five seconds. In many cases, trimming columns is enough to resolve latency issues.</p>
+                <p><b>Result:</b> With this step alone, we saw dashboards that originally took more than ten seconds to load show up in more reasonable three to five seconds. In many cases, trimming columns is enough to resolve latency issues.</p>
 
-                <p><b>II. Implementing a Base Table Date Filter</b></p>
+                <p><b>Solution II. Implementing a Base Table Date Filter</b></p>
                 <p>While removing unnecessary columns can work wonders, some datasets are simply massive. A standard practice in BI is to limit the query range so that you don’t need to retrieve years of historical data when most day-to-day work focuses on recent periods.</p>
+                <p>The problem here is that sometimes, people look at historical data, like KPI from three years ago. So the underlying dataset can't be trimmed to the last two years in these scnearions. 
+                  One easy solution here is, in addition to the date filter you have in the dashboard, you can have additional layer of date filters, that applies to the base table. </p>
                 <ul>
-                  <li><b>Step 1: Apply a Default Date Filter at the Source:</b> By adding a date filter directly at the base table level—say, restricting the view to the last two years—you ensure that Sigma’s queries don’t fetch outdated or rarely used data. If your team rarely looks at data prior to 2022, consider making 2022 the earliest date pulled.</li>
+                  <li><b>Step 1: Create a "Default" Date Filter at the base table:</b> By adding a date filter directly at the base table level - say, to the last two years — you ensure that Sigma’s queries don’t fetch data prior to those dates. For example, if your business users rarely looks at data prior to 2022, consider making 2022-01-01 the earliest date in the base table.</li>
                   <br>
-                  <li><b>Step 2: User-Controlled Flexibility:</b> The beauty of Sigma’s live connection to your warehouse is that you can allow users to remove or adjust this filter if needed. If a marketer wants to analyze a historic 2019 campaign, they can easily remove the date filter and refresh. For everyday usage, though, this ensures dashboards load faster and keeps costs down.</li>
+                  <li><b>Step 2: User-Controlled Flexibility:</b> The beauty of Sigma is that you can allow business users to remove or adjust this filter if needed. If a marketer wants to analyze a historic 2019 campaign, they can easily remove the date filter and pull data from 2019 since the dataset hasn't been trimmed by the dates. For everyday usage, however, the filter ensures that the dashboard loads fast and keeps costs down.</li>
                   <br>
                   <li><b>Step 3: Monitor and Adjust:</b> Keep an eye on usage patterns. If your organization’s default “window” is frequently revisited, consider adjusting it. The goal is to strike a balance between speed and accessibility of historical data.</li>
                 </ul>
-                <p><b>Result:</b> For particularly large datasets, applying a base table date filter (on top of removing unnecessary columns) can further reduce load times, ensuring queries run efficiently without sacrificing the flexibility to dive into older data when necessary.</p>
+                <p><b>Result:</b> For particularly large datasets, applying a base table date filter on top of removing unnecessary columns can further reduce load times, ensuring queries run efficiently without sacrificing the flexibility to dive into older data when necessary.</p>
 
                 <h5>Conclusion</h5>
-                <p>As we continue to rely on BI tools like Sigma to draw actionable insights from increasingly complex datasets, optimizing for speed is crucial. By removing unnecessary columns from each visualization and applying a sensible date range filter at the base table level, we’ve seen significant improvements in loading times and a reduction in costs.</p>
-                <p>Whether you’re an analyst maintaining dashboards or a marketer exploring campaign data, these two steps can transform your Sigma experience. Start by streamlining columns and, if needed, introduce a date filter to rein in queries. With these optimizations, you’ll ensure your Sigma dashboards remain responsive, cost-effective, and ready to deliver insights when you need them most.</p>
+                <p>As we continue to rely on BI tools like Sigma to draw actionable insights from increasingly complex datasets, optimizing for speed is crucial. We call 3 seconds the "magic number", in which business users can use the BI without feeling any frustration of pulling data and driving insights. Even though it may sound dramatic, any wait 5 seconds can discourage the usage of the BI tool, which will eventually lead to a less data-driven decision making. 
+                  By removing unnecessary columns from each visualization and applying a sensible date range filter to the base table, we’ve seen significant improvements in loading times and a reduction in the costs.</p>
+                <p>Whether you’re an analyst maintaining dashboards, BI engineer dealing with latency, or a business user exploring Sigma, these two steps can transform your Sigma experience. Start by streamlining columns and use filter intentionally to rein in queries. With these optimizations, you’ll ensure your Sigma dashboards remain responsive, effective, and be a powerful tool that delivers insights for your business.</p>
                 
                 <div class="pagination">
                   <a href="sigma-2.html" title="Sigma Vol. 2: Switching from Tableau to Sigma">← Previous Page</a>
