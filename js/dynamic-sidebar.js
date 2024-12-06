@@ -8,6 +8,7 @@ document.addEventListener('DOMContentLoaded', function() {
             <ul class="sidebar-menu">
                 <li class="sidebar-item"><a href="index.html" class="sidebar-link">Home</a></li>
                 <li class="sidebar-item"><a href="blog.html" class="sidebar-link">Blog</a></li>
+                <li class="sidebar-item"><a href="sigma.html" class="sidebar-link">Sigma BI</a></li>
                  <li class="sidebar-item"><a href="about.html" class="sidebar-link">About</a></li>
                 <li class="sidebar-item"><a href="resource.html" class="sidebar-link">Resource</a></li>
                 <li class="sidebar-item"><a href="resource-ai.html" class="sidebar-link">AI Resource</a></li>
