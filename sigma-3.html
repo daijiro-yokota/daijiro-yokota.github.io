@@ -77,12 +77,13 @@
                 <p><b>I. Removing Unnecessary Columns from Visualizations</b></p>
 
                 <p>When constructing visualizations, it’s common to pull in columns from the base table for calculations or transformations that eventually feed into pivot tables, KPI cards, or charts.
-                  However, after these calculations are done at the base table level, many of these “reference” or “intermediate” columns remain in the child visualization — even when they’re no longer needed.</p>
-                <p>The key here is that in Sigma, each visualization is a table - like what you see in excel or google sheet. So if you are constructing a graph that shows "sales" KPI, for example, you don't really need to have columns related to "costs". </p>  
-                <p>However, you may wonder that you'd need cost columns if you are trying to have a line chart that shows profit (sales - cost) -- no you don't. You just need to have the calculated field in the base table, and only use the profit column for your child element.  </p>  
+                  However, after these calculations are done at the base table level, many of these “reference” or “intermediate” columns remain in the child visualization — even when they’re no longer needed. The key here is that in Sigma, each visualization is a table - like what you see in excel or google sheet. So if you are constructing a graph that shows "sales" KPI, for example, you don't really need to have columns related to "costs". 
+                  However, you may wonder that you'd need cost columns if you are trying to have a line chart that shows profit (sales - cost) -- no you don't. You just need to have the calculated field in the base table, and only use the profit column for your child element.  </p>  
                 <ul>
                   <li><b>Step 1: Identify Non-Essential Columns:</b> Start by reviewing each visualization and its underlying elements. Determine which columns are directly shown in the visualization and which ones are only used behind the scenes. If a column doesn’t appear in the final display and isn’t used for filtering or drill-down, it’s a prime candidate for removal.</li>
+                  <br>
                   <li><b>Step 2: Focus on Core Metrics:</b> Let’s say you have a KPI card that shows click metrics. If that card only needs “Click” columns and certain breakdown fields, remove any conversions or other metrics not directly related. Similarly, pivot tables often need just the final computed columns. If the base table already performs the necessary calculations, the pivot doesn’t need all those intermediate columns anymore.</li>
+                  <br>
                   <li><b>Step 3: Streamline Every Visualization:</b> Apply this logic across the board—KPI cards, pivot tables, bar charts, and more. Each streamlined element reduces the query complexity and improves the overall dashboard load time.</li>
                 </ul>
                 <p><b>Result:</b> With this step alone, we saw dashboards that originally took more than five seconds to load drop to a more reasonable three to five seconds. In many cases, trimming columns is enough to resolve latency issues.</p>
@@ -91,7 +92,9 @@
                 <p>While removing unnecessary columns can work wonders, some datasets are simply massive. A standard practice in BI is to limit the query range so that you don’t need to retrieve years of historical data when most day-to-day work focuses on recent periods.</p>
                 <ul>
                   <li><b>Step 1: Apply a Default Date Filter at the Source:</b> By adding a date filter directly at the base table level—say, restricting the view to the last two years—you ensure that Sigma’s queries don’t fetch outdated or rarely used data. If your team rarely looks at data prior to 2022, consider making 2022 the earliest date pulled.</li>
+                  <br>
                   <li><b>Step 2: User-Controlled Flexibility:</b> The beauty of Sigma’s live connection to your warehouse is that you can allow users to remove or adjust this filter if needed. If a marketer wants to analyze a historic 2019 campaign, they can easily remove the date filter and refresh. For everyday usage, though, this ensures dashboards load faster and keeps costs down.</li>
+                  <br>
                   <li><b>Step 3: Monitor and Adjust:</b> Keep an eye on usage patterns. If your organization’s default “window” is frequently revisited, consider adjusting it. The goal is to strike a balance between speed and accessibility of historical data.</li>
                 </ul>
                 <p><b>Result:</b> For particularly large datasets, applying a base table date filter (on top of removing unnecessary columns) can further reduce load times, ensuring queries run efficiently without sacrificing the flexibility to dive into older data when necessary.</p>
