@@ -96,6 +96,9 @@
                 <p>While removing unnecessary columns can work wonders, some datasets are simply massive. A standard practice in BI is to limit the query range so that you don’t need to retrieve years of historical data when most day-to-day work focuses on recent periods.</p>
                 <p>The problem here is that sometimes, people look at historical data, like KPI from three years ago. So the underlying dataset can't be trimmed to the last two years in these scnearions. 
                   One easy solution here is, in addition to the date filter you have in the dashboard, you can have additional layer of date filters, that applies to the base table. </p>
+                  <div class="item">
+                    <img class="responsive" src="img/portfolio/datefilter.png.jpg" alt="Date Filter">
+                  </div>
                 <ul>
                   <li><b>Step 1: Create a "Default" Date Filter at the base table:</b> By adding a date filter directly at the base table level - say, to the last two years — you ensure that Sigma’s queries don’t fetch data prior to those dates. For example, if your business users rarely looks at data prior to 2022, consider making 2022-01-01 the earliest date in the base table.</li>
                   <br>
