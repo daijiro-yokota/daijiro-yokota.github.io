@@ -42,14 +42,24 @@
 }
 
 .meta {
-  font-size: 0.85rem;
+  font-size: 0.75rem;
   color: #666;
-  margin-top: 4px; /* Adjust spacing as needed */
-  margin-bottom: 0; /* Remove any bottom margin */
+  margin-top: 0px; /* Adjust spacing as needed */
+  margin-bottom: 10px; /* Remove any bottom margin */
   position: static; /* Ensure it follows the normal document flow */
 }
 
+.col-md-4 {
+  border: 0px solid #ddd; /* Add a light gray border */
+  border-radius: 0px; /* Optional: Add rounded corners */
+  padding: 20px; /* Add padding inside the card */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Optional: Add a subtle shadow */
+}
 
+
+.col-md-4 h5 {
+  margin-bottom: 0rem;
+}
 
 
 @media (min-width: 768px) {
