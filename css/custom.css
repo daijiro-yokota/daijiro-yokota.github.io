@@ -45,25 +45,25 @@
 
 @media (min-width: 768px) {
   #sidebar {
-    flex: 0 0 22%;
-    max-width: 22%;
+    flex: 0 0 20%;
+    max-width: 20%;
   }
   
   .content-column {
-    flex: 0 0 78%;
-    max-width: 78%;
+    flex: 0 0 80%;
+    max-width: 80%;
   }
 }
 
 @media (min-width: 992px) {
   #sidebar {
-    flex: 0 0 18%;
-    max-width: 18%;
+    flex: 0 0 16%;
+    max-width: 16%;
   }
   
   .content-column {
-    flex: 0 0 82%;
-    max-width: 82%;
+    flex: 0 0 84%;
+    max-width: 84%;
   }
 }
 
