@@ -41,6 +41,15 @@
   /* font-weight: bold; */
 }
 
+.meta {
+  font-size: 0.85rem;
+  color: #666;
+  margin-top: 4px; /* Adjust spacing as needed */
+  margin-bottom: 0; /* Remove any bottom margin */
+  position: static; /* Ensure it follows the normal document flow */
+}
+
+
 
 
 @media (min-width: 768px) {
